@@ -16,7 +16,7 @@ if ($session->checkSession()) {
             break;
 
         default:
-            $respuesta = Funciones::RespuestaJson(2, "No existe metodo seleccionado");
+            $respuesta = Funciones::RespuestaJson(2, "No existe metodo seleccionado '$metodo'");
             break;
     }
 } else {

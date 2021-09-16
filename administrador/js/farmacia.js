@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    ObtenerSelected()
+    ObtenerSelected(ObtenerFarmacias)
 
     // SELECCIONAR ITEMS
     $("#selectedItems").change(function () {
@@ -51,7 +51,7 @@ $(document).ready(function () {
     })
 
     // CAMBIAR DE PAGINA
-    $(".pagination").on('click', 'button.btn-avanzar', function () {
+    $(".pagination").on('click', 'a.page-link', function () {
         var items = Number($("#selectedItems :selected").val())
         var { pagina } = $(this).data()
         ObtenerFarmacias(items, pagina)
@@ -244,39 +244,6 @@ $(document).ready(function () {
         return false
     })
 })
-
-// OBTENER ITEMS SELECTED
-function ObtenerSelected() {
-    var items = 0
-    $.ajax({
-        url: 'util/ajax/parametro.php',
-        type: 'POST',
-        dataType: 'json',
-        data: {
-            metodo: 'PW',
-            parametro: 'numeroItems'
-        },
-        // error: function (err) { console.log(err) },
-        success: function (response) {
-            switch (response.estado) {
-                case 1:
-                    var slect = "", value = parseInt(response.msj)
-                    items = parseInt(response.msj)
-                    for (var i = 0; i < 4; i++) {
-                        slect += `<option value='${value}' ${i == 0 ? 'selected' : ''} >${value}</option>`
-                        value += parseInt(response.msj)
-                    }
-                    // slect += `<option value="0">Todos</option>`
-                    $("#selectedItems").html(slect)
-                    break;
-
-            }
-        },
-        complete: function () {
-            ObtenerFarmacias(items)
-        }
-    })
-}
 
 // LISTAR FARMACIAS
 function ObtenerFarmacias(items = 10, pagina = 1) {

@@ -25,8 +25,12 @@
 	fill: currentColor;
 }
 
-.btn-avanzar {
+.page-item.active .page-link  {
     color: #000;
     background-color: #ffc107;
     border-color: #ffc107;
+}
+
+.page-item .page-link{
+    color: #000;
 }

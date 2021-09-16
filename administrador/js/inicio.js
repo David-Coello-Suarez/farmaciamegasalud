@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    ObtenerSelected()
+    ObtenerSelected(ObtenerListas)
     ListarCategoria()
 
     // AÑADIR PRODUCTOS
@@ -211,7 +211,7 @@ $(document).ready(function () {
     })
 
     // PAGINA CLICK
-    $(".pagination").on('click', 'button[type=button]', function () {
+    $(".pagination").on('click', 'a.page-link', function () {
         var items = parseInt($("#selectedItems :selected").val());
         var { pagina } = $(this).data()
         ObtenerListas(items, pagina)
@@ -238,39 +238,6 @@ function LimpiarForm() {
             $(item).find("img").attr({ src: `img/producto/no-producto.png?v=${new Date().getSeconds()}` })
         } else {
             $(item).remove()
-        }
-    })
-}
-
-// OBTENER ITEMS SELECTED
-function ObtenerSelected() {
-    var items = 0
-    $.ajax({
-        url: 'util/ajax/parametro.php',
-        type: 'POST',
-        dataType: 'json',
-        data: {
-            metodo: 'PW',
-            parametro: 'numeroItems'
-        },
-        // error: function (err) { console.log(err) },
-        success: function (response) {
-            switch (response.estado) {
-                case 1:
-                    var slect = "", value = parseInt(response.msj)
-                    items = parseInt(response.msj)
-                    for (var i = 0; i < 4; i++) {
-                        slect += `<option value='${value}' ${i == 0 ? 'selected' : ''} >${value}</option>`
-                        value += parseInt(response.msj)
-                    }
-                    // slect += `<option value="0">Todos</option>`
-                    $("#selectedItems").html(slect)
-                    break;
-
-            }
-        },
-        complete: function () {
-            ObtenerListas(items)
         }
     })
 }
