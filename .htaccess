@@ -1,0 +1,12 @@
+Options +FollowSymLinks -MultiViews
+
+RewriteEngine On
+
+#RewriteCond %{HTTPS} off
+
+#RewriteRule ^(.*)$ https
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule (.*)/$ https://farmaciasmegasalud.com/$1 [R=301,L,QSA]
+
+RewriteRule ^([a-zA-Z_-]*)$ index.php?pagina=$1 [L,QSA]

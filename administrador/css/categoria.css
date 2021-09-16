@@ -1,0 +1,8 @@
+.btn-avanzar {
+	color: #000;
+	background-color: #ffc107;
+	border-color: #ffc107;
+}
+.not-allowed{
+    cursor: not-allowed !important;
+}

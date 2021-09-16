@@ -1,0 +1,28 @@
+.product-thumb .price,
+.product-info .price,
+.price,
+.price-new,
+a:hover,
+a b:hover,
+.category .tabs li a:hover,
+.sitemap li a:hover,
+.pagination > li > a:hover,
+.breadcrumb a:hover,
+.login-content .right a:hover,
+.list-item a:hover,
+.faq .panel-title:hover,
+.feature-box .feature-icon {
+	color: orange !important;
+}
+
+.box-category a:hover{
+    color: black !important;
+}
+
+.active{
+    background: orange !important;
+    color: white !important;
+}
+.pagination{
+    margin: 1rem auto;
+}

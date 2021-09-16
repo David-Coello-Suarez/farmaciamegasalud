@@ -1,0 +1,63 @@
+body {
+    background: white;
+}
+
+#header #cart .heading .cart-icon,
+#menu .nav > li > a.home_link:hover span {
+    background: orange;
+}
+
+#header #cart .heading .cart-icon:before,
+#header #cart .heading .cart-icon:after,
+#header #cart .dropdown-menu,
+#menu .nav > li > a.home_link:hover span:after,
+#menu .nav > li.mega-menu > div,
+#menu .nav > li.categories > div,
+#menu .nav > li.mega-menu > div .submenu,
+#menu .nav > li.categories > div > .column > div,
+#menu .nav > li > .dropdown-menu,
+#menu .submenu {
+    border-color: orange;
+}
+
+#menu,
+.product-thumb .button-group > button:hover {
+    background: orange;
+}
+
+#menu .nav > li:hover > a,
+#menu .nav > li > a.home_link:hover {
+    color: black;
+}
+
+#menu .nav > li.sub:hover > a:after {
+    border-bottom-color: orange;
+}
+
+#menu .nav > li > a.home_link,
+#menu .nav > li.custom-link-right > a {
+    background: black;
+}
+
+#menu .nav > li > a.home_link:hover span:before {
+    border-color: transparent transparent orange;
+}
+
+#menu .nav > li.custom-link-right:hover > a,
+a,
+a b,
+.articleHeader span a,
+.pagination > li > a {
+    color: orange;
+}
+
+.owl-carousel.single-slider .owl-controls .owl-buttons .owl-next:hover,
+.owl-carousel.single-slider .owl-controls .owl-buttons .owl-prev:hover {
+    background-color: orange !important;
+}
+#header .header-row {
+    padding: 20px 0;
+}
+#container{
+    margin-bottom: 0px;
+}
