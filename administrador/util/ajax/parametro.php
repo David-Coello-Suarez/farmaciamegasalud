@@ -14,6 +14,11 @@ if ($session->checkSession()) {
             $parametroExt = strval($_POST['parametro']);
             $respuesta = $parametro->ObtenerParametro($parametroExt);
             break;
+        case'OTP':
+            $items = intval($_POST['items']);
+            $pagina = intval($_POST['pagina']);
+            $respuesta = $parametro->ObtenerParametros($items, $pagina);
+            break;
 
         default:
             $respuesta = Funciones::RespuestaJson(2, "No existe metodo seleccionado '$metodo'");
