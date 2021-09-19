@@ -51,7 +51,7 @@ $(document).ready(function () {
     })
 
     // CAMBIAR DE PAGINA
-    $(".pagination").on('click', 'a.page-link', function () {
+    $(".paginacion").on('click', 'a.page-link', function () {
         var items = Number($("#selectedItems :selected").val())
         var { pagina } = $(this).data()
         ObtenerFarmacias(items, pagina)
@@ -264,31 +264,30 @@ function ObtenerFarmacias(items = 10, pagina = 1) {
                     var farmacia = ""
                     data.farmacias.map(function (item) {
                         farmacia += `
-                            <div class="col col-md-3 py-2 mx-auto">
-                                <div class="card shadow-sm">
-                                    <img src="${item['imagen']}?v=${new Date().getMilliseconds()}" />
-                                    <div class="card-body">
-                                        <p class="card-text">
-                                        ${item['direccion']}
-                                        </p>
-                                    </div>
-                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item">Ciudad: <strong>${item['ciudad']}</strong> </li>
-                                        <li class="list-group-item">Telefono: ${item['telefono']} ext: ${item['ext']} </li>
-                                        <li class="list-group-item">Referencia: ${item['referencia'] == "" ? "<br><br>" : item['referencia']} </li>
-                                        <li class="list-group-item">
-                                            Estado: <strong> ${parseInt(item['estado']) == 1 ? 'Activo' : 'Inactivo'} </strong>
-                                        </li>
-                                        <li class="list-group-item"> <a href="${item['googlemaps']}" target="_blank">Ver en el mapa</a> </li>
-                                    </ul>
-                                    <div class="card-body">
-                                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="col-md-6">
+                                <div class="row shadow-lg g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                                    <div class="col p-4 d-flex flex-column position-static">
+                                        
+                                        <strong class="d-inline-block mb-2 text-primary">${item['ciudad']}</strong>
+                                        
+                                        <h3 class="mb-0">${item['referencia']}</h3>
+                                        
+                                        <div class="mb-1 text-muted">${moment(item['createdAt'], "YYYYMMDD").fromNow()}</div>
+                                        
+                                        <p class="card-text mb-auto"> Estado: <strong> ${parseInt(item['estado']) == 1 ? 'Activo' : 'Inactivo'} </strong></p>
+
+                                        <a href="${item['googlemaps']}" target="_blank">Ver en el mapa</a>
+                                    
+                                        <div class="d-flex justify-content-between align-items-center mt-2">
                                             <div class="btn-group">
                                                 <button type="button" data-id=${item['id']} data-estado=${parseInt(item['estado'])} class="btn btn-estado btn-sm btn-outline-${parseInt(item['estado']) == 1 ? 'danger' : 'success'}">${parseInt(item['estado']) == 1 ? 'Inactivo' : 'Activo'}</button>
                                                 <button type="button" data-id=${item['id']} class="btn btn-editar btn-sm btn-outline-warning">Editar</button>
                                             </div>
-                                            <small class="text-muted">${moment(item['createdAt'], "YYYYMMDD").fromNow()}</small>
                                         </div>
+                                    
+                                    </div>
+                                    <div class="col-auto d-none d-lg-block">
+                                        <img class="bd-placeholder-img" width="200" height="250" src="${item['imagen']}?v=${new Date().getMilliseconds()}" />
                                     </div>
                                 </div>
                             </div>
@@ -296,7 +295,7 @@ function ObtenerFarmacias(items = 10, pagina = 1) {
                     })
                     $(".farmacias").html(farmacia)
                     $(".mostrar").html(data.mostrar)
-                    $(".pagination").html(data.paginacion)
+                    $(".paginacion").html(data.paginacion)
                     break
             }
         },
@@ -339,7 +338,7 @@ function ListarCiudades() {
 
 // OBTENER ITEM Y PAGINA ACTUAL
 function itemPaginaActual() {
-    var { pagina } = $(".pagination").find("button[type=button].active").data()
+    var pagina = $(".paginacion").find("li.active > a").data("pagina")
     var items = Number($("#selectedItems :selected").val())
     ObtenerFarmacias(items, pagina)
 }

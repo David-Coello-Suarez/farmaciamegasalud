@@ -36,7 +36,6 @@ if ($session->checkSession()) {
             $data = $_POST;
             $img = $_FILES['image'];
             $repuesta = $farmacia->CrearFarmacias($data, $img);
-            // $repuesta = Funciones::RespuestaJson(4,"", $_POST);
             break;
 
         default:

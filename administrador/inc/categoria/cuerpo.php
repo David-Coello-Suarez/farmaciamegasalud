@@ -51,10 +51,7 @@
             </table>
         </div>
         <div class="row">
-            <div class="col-md-6 text-center text-md-start pagination">
-                <!-- <ul class="d-inline-flex d-md-flex my-3 pagination">
-                </ul> -->
-            </div>
+            <div class="col-md-6 text-center text-md-start paginacion"></div>
             <div class="col-md-6 mostrar text-center text-md-end"></div>
         </div>
     </div>

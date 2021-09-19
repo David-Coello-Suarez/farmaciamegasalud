@@ -6,7 +6,7 @@
     <link rel="icon" href="img/ico.ico?v=<? echo $random ?>" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><? echo ucfirst($pagina); ?> | Farmacia Mega Salud</title>
+    <title><? echo ucfirst($pagina); ?> | <? print_r($parametro['nombreweb']) ?></title>
 
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
@@ -33,13 +33,15 @@
                     <?
                     $itemMenu = "";
                     foreach ($menu as $key => $item) {
-                        $itemMenu .= "
-                            <li>
-                                <a href='" . $item['ventana'] . "' class='nav-link px-2 " . ($pagina == $item['ventana'] ? 'text-white' : 'text-secondary') . "'>
-                                    " . ucfirst($item['nombre']) . "
-                                </a>
-                            </li>
-                        ";
+                        if (file_exists("inc/".$item['ventana'])) {
+                            $itemMenu .= "
+                                <li>
+                                    <a href='" . $item['ventana'] . "' class='nav-link px-2 " . ($pagina == $item['ventana'] ? 'text-white' : 'text-secondary') . "'>
+                                        " . ucfirst($item['nombre']) . "
+                                    </a>
+                                </li>
+                            ";
+                        }
                     }
                     print_r($itemMenu);
                     ?>

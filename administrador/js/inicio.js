@@ -211,7 +211,7 @@ $(document).ready(function () {
     })
 
     // PAGINA CLICK
-    $(".pagination").on('click', 'a.page-link', function () {
+    $(".paginacion").on('click', 'a.page-link', function () {
         var items = parseInt($("#selectedItems :selected").val());
         var { pagina } = $(this).data()
         ObtenerListas(items, pagina)
@@ -322,12 +322,12 @@ function ObtenerListas(items, pagina = 1) {
                     })
 
                     $(".tbodyProducto").html(tbody)
-                    $(".pagination").html(paginacion)
+                    $(".paginacion").html(paginacion)
                     $(".mostrar").html(mostar)
                     break;
                 case 2:
                     $(".tbodyProducto").html(`<tr> <td colspan="20" class="text-center p-3"> No hay productos </td>  </tr>`)
-                    $(".pagination").empty()
+                    $(".paginacion").empty()
                     $(".mostrar").html(mostar)
                     break;
             }

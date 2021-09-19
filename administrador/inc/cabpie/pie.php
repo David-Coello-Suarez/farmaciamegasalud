@@ -48,7 +48,12 @@ for ($i = 0; $i < count($arregloLib['libreria']); $i++) {
 ?>
 
 <script type="text/javascript" language="javascript" src="js/cabpie/funciones.js?v=<? echo $random ?>"></script>
-<script type="text/javascript" language="javascript" src="js/<? echo $pagina ?>.js?v=<? echo $random ?>"></script>
+<?
+if (file_exists("js/$pagina.js")) {
+    echo "<script type='text/javascript' language='javascript' src='js/$pagina.js?v=$random'></script>";
+}
+?>
+
 
 </body>
 

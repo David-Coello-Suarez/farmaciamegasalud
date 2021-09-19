@@ -12,6 +12,8 @@ if (file_exists("../../config.php")) {
     include_once("../../../config.php");
 }
 
+date_default_timezone_set("America/Guayaquil");
+
 class Parametros
 {
     private $conexion;
@@ -30,12 +32,10 @@ class Parametros
             $parametro[trim($item['nombre'])] = trim($item['valor']);
         }
 
-        $data = $parametro["$params"];
-
         return Funciones::RespuestaJson(1, $parametro["$params"]);
     }
 
-    public function ObtenerParametros($itemForPage = 5, $pagina = 1)
+    public function ObtenerParametros($itemForPage , $pagina)
     {
         $parametros = $this->conexion->DBConsulta("SELECT * FROM Parametros", false, array(1));
 
@@ -47,7 +47,9 @@ class Parametros
             $cont = intval($inicia + 1);
             $itemInt = array();
 
-            foreach ($parametros as $item) {
+            $parametrosInt =  $this->conexion->DBConsulta("SELECT * FROM Parametros LIMIT $inicia, $itemForPage", false, array(1));
+
+            foreach ($parametrosInt as $item) {
                 $item['pos'] = $cont;
 
                 $cont++;
@@ -62,6 +64,21 @@ class Parametros
             return Funciones::RespuestaJson(1, "", $data);
         } else {
             return Funciones::RespuestaJson(2, "No hay datos para mostrar");
+        }
+    }
+
+    public function ActualizarParametro($id, $valor, $desc)
+    {
+        $data = date("Y-m-d H:i:s");
+
+        $sqlUpdate = "UPDATE Parametros SET valor = ?, descripcion = ?, updatedAt = ? WHERE id = ?";
+
+        $guardar = $this->conexion->DBConsulta($sqlUpdate, true, array($valor, $desc, $data, $id));
+
+        if ($guardar) {
+            return Funciones::RespuestaJson(1);
+        } else {
+            return Funciones::RespuestaJson(2, "Error al actualizar");
         }
     }
 }

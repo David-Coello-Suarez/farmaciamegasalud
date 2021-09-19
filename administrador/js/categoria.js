@@ -3,7 +3,7 @@ $(document).ready(function () {
     ObtenerSelected(ListarCategorias)
 
     // PAGINACION CLICK
-    $(".pagination").on('click', 'a.page-link', function () {
+    $(".paginacion").on('click', 'a.page-link', function () {
         var items = parseInt($("#selectedItems :selected").val());
         var { pagina } = $(this).data()
         ListarCategorias(items, pagina)
@@ -235,7 +235,7 @@ function ListarCategorias(items, pagina = 1) {
                     })
 
                     $(".tbodyCategoria").html(tbody)
-                    $(".pagination").html(data.paginacion)
+                    $(".paginacion").html(data.paginacion)
                     $(".mostrar").html(data.mostrar)
                     break;
                 case 2:
@@ -248,7 +248,7 @@ function ListarCategorias(items, pagina = 1) {
                     `
 
                     $(".tbodyCategoria").html(tbody)
-                    $(".pagination").empty()
+                    $(".paginacion").empty()
                     $(".mostrar").empty()
                     break;
 

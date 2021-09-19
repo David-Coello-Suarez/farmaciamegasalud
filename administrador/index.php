@@ -14,8 +14,14 @@ $conexion->DBConexion();
 
 $random = rand();
 
-$pagina = "inicio";
+// OBTENER PARAMETROS
+$sql = $conexion->DBConsulta("SELECT * FROM Parametros", false, array(1));
+$parametro = array();
+foreach ($sql as $fila) {
+    $parametro[trim($fila["nombre"])] = trim($fila['valor']);
+}
 
+$pagina = $parametro['paginadefault'];
 if (isset($_GET["pagina"]) && !empty($_GET['pagina'])) {
     $pagina = $_GET["pagina"];
 }

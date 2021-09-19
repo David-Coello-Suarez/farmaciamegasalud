@@ -2,9 +2,9 @@
     <li class="nav-item" role="presentation">
         <button class="nav-link active" id="listarParametros-tab" data-bs-toggle="tab" data-bs-target="#listarParametros" type="button" role="tab" aria-controls="listarParametros" aria-selected="true">Lista de parámetros</button>
     </li>
-    <li class="nav-item" role="presentation">
+    <!-- <li class="nav-item" role="presentation">
         <button class="nav-link " id="editarParametro-tab" data-bs-toggle="tab" data-bs-target="#editarParametro" type="button" role="tab" aria-controls="editarParametro" aria-selected="false">Editar Parámetro</button>
-    </li>
+    </li> -->
 </ul>
 
 <div class="tab-content py-2" id="myTabContent">
@@ -27,12 +27,23 @@
                             #
                         </th>
                         <th class="text-center">
+                            Editar
+                        </th>
+                        <th class="text-center">
                             Nombre parámetro
+                        </th>
+                        <th class="text-center">
+                            Valor
                         </th>
                         <th class="text-center">
                             Descripción
                         </th>
-                        
+                        <th class="text-center">
+                            Creación
+                        </th>
+                        <th class="text-center">
+                            Actualización
+                        </th>
                     </tr>
                 </thead>
                 <tbody id="tbodyParametro"></tbody>
@@ -40,10 +51,7 @@
         </div>
 
         <div class="row">
-            <div class="col-md-6 text-center text-md-start paginacion">
-                <!-- <ul class="d-inline-flex d-md-flex my-3 pagination">
-                </ul> -->
-            </div>
+            <div class="col-md-6 text-center text-md-start paginacion"></div>
             <div class="col-md-6 mostrar text-center text-md-end"></div>
         </div>
     </div>

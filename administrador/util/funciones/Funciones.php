@@ -15,9 +15,9 @@ class Funciones
         $paginas = intval(ceil($totalItems / $itemsForPage));
 
         $paginacion = "<nav aria-label='Navigation'>";
-        $paginacion .= "<ul class='pagination pagination-sm'>";
+        $paginacion .= "<ul class='justify-content-center justify-content-lg-start pagination pagination-sm'>";
 
-        if ($paginas < 5) {
+        if ($paginas <= 5) {
             for ($i = 0; $i < $paginas; $i++) {
                 $paginacion .= "<li class='page-item " . ($pagina == ($i + 1) ? 'active' : '') . "'> <a href='javascript:;' class='page-link' data-pagina='" . ($i + 1) . "'> " . ($i + 1) . " </a> </li>";
             }
