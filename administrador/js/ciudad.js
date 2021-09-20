@@ -59,6 +59,34 @@ $(document).ready(function () {
 
     })
 
+    $(".tbodyCiudades").on("click", "input[type=checkbox]", function () {
+        var data = $(this).data()
+
+        if (data.estado == 1) {
+            data.estado = 0
+        } else {
+            data.estado = 1
+        }
+
+        data.metodo = "AEC"
+
+        $.ajax({
+            url: 'util/ajax/ciudades.php',
+            type: 'POST',
+            dataType: 'Json',
+            data,
+            success: function (response) {
+                var {estado, msj, data} = response
+
+                switch(estado){
+                    case 1:
+                        ListarCiudadesItems()
+                        break;
+                }
+            }
+        })
+    })
+
     $(".Ciudades").on("click", " .btnQuitar", function () {
         var { pos } = $(this).data()
 

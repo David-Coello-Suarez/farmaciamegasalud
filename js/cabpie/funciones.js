@@ -177,7 +177,35 @@ $(document).ready(function () {
     }
 
     ListarCategoriasCab()
-})
+
+    var message = "",
+        hora = new Date().getHours()
+
+    if (hora < 6) {
+        message = "Buenos dias ....";
+    } else if (hora < 12) {
+        message = "Buenas tardes ..."
+    } else if (hora > 19) {
+        message = "Buenas noches ..."
+    }
+
+    $('#WABoton').floatingWhatsApp({
+        phone: $("#contactWS").val().replace('', ' '), // Número WhatsApp Business
+        popupMessage: 'Hola 👋 ¿Cómo podemos ayudarte?', // Mensaje pop up
+        message, // Mensaje por defecto
+        showPopup: true, // Habilita el pop up
+        headerTitle: 'WhatsApp Chat', // Título del header
+        headerColor: '#25D366', // Color del header
+        buttonImage: '<img src="https://rawcdn.githack.com/rafaelbotazini/floating-whatsapp/3d18b26d5c7d430a1ab0b664f8ca6b69014aed68/whatsapp.svg" />', // Icono WhatsApp
+        size: '50px', // Tamaño del icono
+        position: "right", // Posición del icono
+        avatar: 'https://www.w3schools.com/howto/img_avatar.png', // URL imagen avatar
+        avatarName: 'Farmacias Mega Salud', // Nombre del avatar
+        avatarRole: 'Soporte', // Rol del avatar
+        zIndex: '99999',
+    });
+});
+
 
 function ListarCategoriasCab() {
     $.ajax({

@@ -1,7 +1,7 @@
 <!-- Breadcrumb Start-->
 <ul class="breadcrumb">
     <li><a href="inicio"><i class="fa fa-home"></i></a></li>
-    <li><a href="contacto">Contáctenos</a></li>
+    <li><a href="<? echo $pagina?>"><? echo ucfirst($pagina) ?></a></li>
 </ul>
 <!-- Breadcrumb End-->
 
@@ -17,10 +17,9 @@
                     <div class="contact-detail">
                         <h4>Guayaquil</h4>
                         <address>
-                            Central Square,<br />
-                            22 Hoi Wing Road,<br />
-                            New Delhi,<br />
-                            India
+                            <?
+                                echo $parametro['direccionLocal']
+                            ?>
                         </address>
                     </div>
                 </div>
@@ -30,8 +29,7 @@
                     <div class="contact-info-icon"><i class="fa fa-phone"></i></div>
                     <div class="contact-detail">
                         <h4>Telefono</h4>
-                        Call: +91 9898989898<br>
-                        Fax: +91 9898989898
+                        Telefóno: <? echo $parametro['contacto'] ?><br>
                     </div>
                 </div>
             </div>

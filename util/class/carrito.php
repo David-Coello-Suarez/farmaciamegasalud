@@ -60,26 +60,20 @@ class Carrito
 
         $obtenerCarrito = $this->conexion->DBConsulta($sql, false, array(session_id()));
 
-        if ($obtenerCarrito) {
+        // OBTENE EL IVA 
+        $impuesto = $this->conexion->DBConsulta("SELECT valor FROM Parametros WHERE nombre = 'iva'", false);
+        $imp = $impuesto['valor'];
+
+        if (count($obtenerCarrito) > 0) {
             $data = array();
             $subtotal = 0;
             foreach ($obtenerCarrito as $item) {
 
-                // $ptotal = number_format((number_format($item['precio'], 2) * intval($item['cantidad'])), 2);
-
-                // $item['ptotal'] = $ptotal;
-
-                // $subtotal += $ptotal;
-
                 $subtotalItem = 0;
 
-                if ( intval($item['cantidad']) >= intval($item['combo'])) {
+                if (intval($item['cantidad']) >= intval($item['combo'])) {
 
                     $subtotalItem = number_format($item['precioUnitPromo'], 2) * intval($item['cantidad']);
-
-                    // $precioTotal = number_format($subtotalItem, 2);
-
-                    // $subtotal += $precioTotal;
 
                     $item['aplicaOferta'] = true;
 
@@ -88,10 +82,6 @@ class Carrito
                     $item['ptotal'] = number_format($subtotalItem, 2);
                 } else {
                     $subtotalItem = number_format($item['precionormal'], 2) * intval($item['cantidad']);
-
-                    // $precioTotal = number_format($subtotalItem, 2);
-
-                    // $subtotal += $precioTotal;
 
                     $item['aplicaOferta'] = false;
 
@@ -106,13 +96,14 @@ class Carrito
                 $data['carrito'][] = $item;
             }
             $data['subtotal'] = number_format($subtotal, 2);
-            $data['iva'] = 12;
-            $data['ivaSumado'] = number_format(($subtotal * 0.12), 2);
-            $data['total'] =  number_format((($subtotal * 0.12) + $subtotal), 2);
+            $data['iva'] = $imp;
+            $data['ivaSumado'] = number_format(($subtotal * $imp), 2);
+            $data['total'] =  number_format((($subtotal * $imp) + $subtotal), 2);
 
             return Funciones::RespuestaJson(1, "", $data);
         } else {
-            return Funciones::RespuestaJson(2, "Error al añadir");
+            $data['iva'] = $imp;
+            return Funciones::RespuestaJson(2, "No hay productos", $data);
         }
     }
 

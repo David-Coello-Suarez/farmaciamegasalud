@@ -224,10 +224,10 @@ function ListarCategorias(items, pagina = 1) {
                                     ${item['descripcion']}
                                 </td>
                                 <td>
-                                    ${item['createdAt']}
+                                ${moment(item['createdAt'], "YYYYMMDD  HHmmii").fromNow()}
                                 </td>
                                 <td>
-                                    ${item['updatedAt']}
+                                ${moment(item['updatedAt'], "YYYYMMDD HHmmii").isValid() ? moment(item['updatedAt'], "YYYYMMDD HHmmii").fromNow() : ''}
                                 </td>
                             </tr>
                         `

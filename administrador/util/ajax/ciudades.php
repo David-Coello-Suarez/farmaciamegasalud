@@ -30,6 +30,9 @@ if ($session->checkSession()) {
         case 'RNC':
             $repuesta = $ciudades->CrearNuevaCiudad($_POST);
             break;
+        case 'AEC':
+            $repuesta = $ciudades->ActualizarEstadoCiudad($_POST);
+            break;
 
         default:
             $repuesta = Funciones::RespuestaJson(2, "No existe metodo seleccionado '$metodo'");

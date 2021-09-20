@@ -16,13 +16,19 @@
     <link rel="stylesheet" href="css/cabpie/owl.carousel.css?v=<? print_r($random) ?>" />
 
     <link rel="stylesheet" href="css/cabpie/style.css?v=<? print_r($random) ?>" />
-    <link rel="stylesheet" href="css/<? print_r($pagina); ?>.css?v=<? print_r($random) ?>" />
 
-    <title>Farmacia Mega Salud</title>
+    <?
+    if (file_exists("css/$pagina.css")) {
+        echo "<link rel='stylesheet' href='css/$pagina.css?v=$random ?>' />";
+    }
+    ?>
+<!-- Enlazar CSS Floating WhatsApp -->
+<link rel="stylesheet" href="https://rawcdn.githack.com/jerfeson/floating-whatsapp/0310b4cd88e9e55dc637d1466670da26b645ae49/floating-wpp.min.css">
+    <title><? echo $parametro['nombreweb'] ?></title>
 </head>
 
 <body>
-
+<input type="hidden" value="<? echo $parametro['contactoWS']; ?>" id="contactWS" />
     <div class="wrapper-wide">
         <div id="header">
             <!-- Top Bar Start-->
@@ -32,17 +38,11 @@
                         <div class="pull-left flip left-top">
                             <div class="links">
                                 <ul>
-                                    <li class="mobile"><i class="fa fa-phone"></i>+593 96 157 5000</li>
-                                    <li class="email"><a href="mailto:info@farmaciamegasalud.com"><i class="fa fa-envelope"></i>info@farmaciamegasalud.com</a></li>
+                                    <li class="mobile"><i class="fa fa-phone"></i><? echo $parametro['contacto'] ?></li>
+                                    <li class="email"><a href="mailto:<? echo $parametro['correoInfo'] ?>"><i class="fa fa-envelope"></i><? echo $parametro['correoInfo'] ?></a></li>
                                 </ul>
                             </div>
                         </div>
-                        <!-- <div id="top-links" class="nav pull-right flip">
-                            <ul>
-                                <li><a href="login">Iniciar Session</a></li>
-                                <li><a href="register">Registrate</a></li>
-                            </ul>
-                        </div> -->
                     </div>
                 </div>
             </nav>

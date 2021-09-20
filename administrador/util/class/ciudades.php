@@ -129,4 +129,19 @@ class Ciudad
             return Funciones::RespuestaJson(3, "Error al registrar");
         }
     }
+
+    public function ActualizarEstadoCiudad($data)
+    {
+        $id = intval($data['id']);
+        $date = date("Y-m-d H:i:s");
+        $estado = intval($data['estado']);
+
+        $actualizarEstado = $this->conexion->DBConsulta("UPDATE Ciudades SET estado = ?, updatedAt = ? WHERE id = ?", true, array($estado, $date, $id));
+
+        if ($actualizarEstado) {
+            return Funciones::RespuestaJson(1);
+        } else {
+            return Funciones::RespuestaJson(2, "Error al actualizar");
+        }
+    }
 }

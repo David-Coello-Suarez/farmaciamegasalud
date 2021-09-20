@@ -4,6 +4,8 @@ include_once("../class/parametroswb.php");
 $params = new Parametros();
 $metodo = $_POST['metodo'];
 
+unset($_POST['metodo']);
+
 switch ($metodo) {
     case 'CLC':
         $param = $_POST['params'];
