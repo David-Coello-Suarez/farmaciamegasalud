@@ -54,9 +54,16 @@
         <div class="container">
             <div id="powered" class="clearfix">
                 <div class="powered_text pull-left flip">
-                    <p>CopyRigth © <? print_r(date("Y")); ?> </a></p>
+                    <p><a href="https://sotenet.net/" >CopyRigth © <? print_r(date("Y")); ?> Sotenet.net</a></p>
                 </div>
-                <div class="social pull-right flip"> <a href="#" target="_blank"> <img data-toggle="tooltip" src="img/social/facebook.png?v=<? print_r($random) ?>" alt="Facebook" title="Facebook"></a> <a href="#" target="_blank"> <img data-toggle="tooltip" src="img/social/twitter.png?v=<? print_r($random) ?>" alt="Twitter" title="Twitter"> </a> </div>
+                <div class="" style="width: 100%; text-align:center"> 
+                    <a href="https://www.facebook.com/farmaciasMegaSalud/" target="_blank"> 
+                        <img data-toggle="tooltip" src="img/social/facebook.png?v=<? print_r($random) ?>" alt="Facebook" title="Facebook">
+                    </a> 
+                    <a href="https://www.instagram.com/farmaciasmegasalud/?utm_medium=copy_link" target="_blank">
+                         <img data-toggle="tooltip"width="32px"  src="https://www.masdemascotitas.com/wp-content/uploads/2020/11/instagram-mas-de-mascotitas-mx.png?v=<? print_r($random) ?>" alt="Instagram" title="Instagram"> 
+                    </a> 
+                </div>
             </div>
             <!-- <div class="bottom-row">
                     <div class="custom-text text-center"> <img alt="" src="image/logo-small.png">
@@ -75,6 +82,7 @@
 <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" language="javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+<script type="text/javascript" language="javascript" src="js/accordion.js"></script>
 <script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js"></script>
 
 <script type="text/javascript" language="javascript" src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>

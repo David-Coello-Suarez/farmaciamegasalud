@@ -120,6 +120,13 @@ $(document).ready(function () {
                 error: function (err) { console.log(err) },
                 success: function (response) {
                     console.log(response)
+                    var {estado} = response
+                    switch(estado){
+                        case 1:
+                            alert("Pedido realizado con exito");
+                            window.location = "";
+                            break
+                    }
                 }
             })
         }
