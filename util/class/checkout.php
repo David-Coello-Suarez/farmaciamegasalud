@@ -106,15 +106,15 @@ class CheckOut
 
             $retiro = "
                 <tr>
-                    <td>
+                    <td  colspan='6'  style='font-size:13px;border-right:1px solid #dddddd;border-bottom:1px solid #dddddd;text-align:right;padding:7px'>
                         Retiro se realiza en local
                     </td>
                 </tr>
                 <tr>
-                    <td>
+                    <td  colspan='6'  style='font-size:13px;border-right:1px solid #dddddd;border-bottom:1px solid #dddddd;text-align:right;padding:7px'>
                         Ciudad de retiro: ".$ciudadSql['ciudad']."
                     </td>
-                    <td>
+                    <td  colspan='6'  style='font-size:13px;border-right:1px solid #dddddd;border-bottom:1px solid #dddddd;text-align:right;padding:7px'>
                         Farmacia de retiro: ".$farmaciaSql['direccion']."
                     </td>
                 </tr>
@@ -123,7 +123,7 @@ class CheckOut
 
         $retiro .= "
             <tr>
-                <td>
+                <td  colspan='6'  style='font-size:13px;border-right:1px solid #dddddd;border-bottom:1px solid #dddddd;text-align:right;padding:7px'>
                     ".$data['comments']."
                 </td>
             </tr>
