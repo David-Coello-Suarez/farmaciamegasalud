@@ -1,8 +1,8 @@
 <?
 define('DBMOTOR', 'mysql');
-define("DBCLAVE","davidc13");
+define("DBCLAVE","xnwemk4y4x9a");
 define("DBHOST", "localhost");
-define('DBUSUARIO', 'davidc');
+define('DBUSUARIO', 'megasalud');
 define('DBDATA', 'megasalu_farmacias');
 
 
