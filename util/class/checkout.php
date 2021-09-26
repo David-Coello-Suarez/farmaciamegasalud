@@ -106,7 +106,7 @@ class CheckOut
 
             $retiro = "
                 <tr>
-                    <td  colspan='6'  style='font-size:13px;border-right:1px solid #dddddd;border-bottom:1px solid #dddddd;text-align:right;padding:7px'>
+                    <td colspan='20' style='font-size:13px;border-right:1px solid #dddddd;border-bottom:1px solid #dddddd;text-align:right;padding:7px'>
                         Retiro se realiza en local
                     </td>
                 </tr>
@@ -123,7 +123,7 @@ class CheckOut
 
         $retiro .= "
             <tr>
-                <td  colspan='6'  style='font-size:13px;border-right:1px solid #dddddd;border-bottom:1px solid #dddddd;text-align:right;padding:7px'>
+                <td  colspan='20'  style='font-size:13px;border-right:1px solid #dddddd;border-bottom:1px solid #dddddd;text-align:right;padding:7px'>
                     ".$data['comments']."
                 </td>
             </tr>
