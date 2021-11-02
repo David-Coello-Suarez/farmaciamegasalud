@@ -1,12 +1,5 @@
 $(document).ready(function () {
-    $('.slideshow').owlCarousel({
-        items: 6,
-        autoPlay: 3000,
-        singleItem: true,
-        navigation: true,
-        navigationText: ['<i class="fa fa-chevron-left"></i>', '<i class="fa fa-chevron-right"></i>'],
-        pagination: true
-    });
+    listarBanner()
 
     $('#menu .navbar-header > span').on("click", function () {
         $(this).toggleClass("active");
@@ -338,5 +331,78 @@ function ActulizarCantProd(idcarrito, cantidad) {
                     break;
             }
         }
+    })
+}
+
+const listarBanner = () => {
+    $.ajax({
+        url: 'util/ajax/banner.php',
+        type: 'POST',
+        dataType: 'json',
+        data: {
+            metodo: 'CBP'
+        },
+        error: function (err) { console.log(err) },
+        success: function (response) {
+
+            var { estado, data } = response
+
+            switch (estado) {
+                case 1:
+                    let { bannersP } = data, bannerdiv = "";
+
+                    bannersP.map((item) => {
+                        bannerdiv += `
+                        <div class="item"> <a href="javascript:;"><img class="img-responsive" src="administrador/${item['imagen']}?v=${new Date().getMilliseconds()}" alt="banner 1" /></a></div>
+                        `
+                    })
+
+                    $(".slideshow").html(bannerdiv)
+                    break
+            }
+        },
+        complete: function () {
+            $('.slideshow').owlCarousel({
+                items: 6,
+                autoPlay: 3000,
+                singleItem: true,
+                navigation: true,
+                navigationText: ['<i class="fa fa-chevron-left"></i>', '<i class="fa fa-chevron-right"></i>'],
+                pagination: false
+            });
+
+            listarBannerSecundario();
+        }
+    })
+
+}
+
+const listarBannerSecundario = () => {
+    $.ajax({
+        url: 'util/ajax/banner.php',
+        type: 'POST',
+        dataType: 'json',
+        data: {
+            metodo: 'CBS'
+        },
+        error: function (err) { console.log(err) },
+        success: function (response) {
+            
+            var { estado, data } = response
+
+            switch (estado) {
+                case 1:
+                    let { bannersS } = data, bannerdiv = "";
+
+                    bannersS.map((item) => {
+                        bannerdiv += `
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"> <a href="#"><img title="sample-banner1" alt="sample-banner1" src="administrador/${item['imagen']}?v=${new Date().getMilliseconds()}"></a></div>
+                        `
+                    })
+
+                    $(".seconds").html(bannerdiv)
+                    break
+            }
+        },
     })
 }
