@@ -152,14 +152,18 @@ $(document).ready(function () {
             dataType: 'json',
             error: function (error) { console.log(error) },
             success: function (response) {
-                switch (response.estado) {
+                
+                var { estado, mensaje } = response
+                switch (parseInt(estado)) {
                     case 1:
-                        ObtenerListas();
+                        var items = parseInt($("#selectedItems :selected").val());
+                        var pagina = parseInt($(".pagination").find(".page-item.active > .page-link").data("pagina"))
+                        ObtenerListas(items, pagina);
                         break;
                     case 2:
                         Swal.fire({
                             icon: 'warning',
-                            text: `${response.mensaje}`,
+                            html: mensaje,
                             confirmButtonText: 'Iniciar Session'
                         })
                         break;
@@ -254,6 +258,7 @@ function ObtenerListas(items, pagina = 1) {
             pagina
         },
         success: function (response) {
+            
             switch (response.estado) {
                 case 1:
                     var { paginacion, mostar, producto } = response.data, tbody = ""
@@ -429,7 +434,7 @@ function calcularOferta(elemento) {
     } else {
         $(elemento).parent().parent().parent().parent().find("input#oferta").val('0.00')
     }
-}
+}LimpiarForm
 
 
 // VALIDACION DE NUMERO

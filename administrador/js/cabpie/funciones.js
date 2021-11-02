@@ -65,8 +65,21 @@ function ObtenerSelected(callback) {
 
             }
         },
-        complete: function(){
+        complete: function () {
             callback(items)
         }
+    })
+}
+
+const swalMixin = (mensaje, icon = "success") => {
+    Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+    }).fire({
+        html: mensaje,
+        icon,
     })
 }

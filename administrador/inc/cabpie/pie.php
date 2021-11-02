@@ -12,13 +12,15 @@
                 <?
                 $itemMenu = "";
                 foreach ($menu as $key => $item) {
-                    $itemMenu .= "
+                    if ($key < 4) {
+                        $itemMenu .= "
                             <li>
                                 <a href='" . $item['ventana'] . "' class='nav-link px-2 " . ($pagina == $item['ventana'] ? 'text-black' : 'text-secondary') . "'>
                                     " . ucfirst($item['nombre']) . "
                                 </a>
                             </li>
                         ";
+                    }
                 }
                 print_r($itemMenu);
                 ?>
