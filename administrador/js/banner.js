@@ -248,6 +248,6 @@ const LimpiarForm = () => {
     $("#idbanner").val(0)
     $("#formBanner").trigger("reset");
     $("button#listaproducto-tab").tab("show")
-    $("button[type=submit]").html("Guardar").prop({ disabled: false })
+    $("button[type=submit].bannerSubmit").html("Guardar").prop({ disabled: false })
     $("#formBanner").find("#imgPre").attr({ src: `img/producto/no-producto.png?v=${new Date().getSeconds()}` })
 }
