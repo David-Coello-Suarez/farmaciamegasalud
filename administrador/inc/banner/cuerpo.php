@@ -1,6 +1,6 @@
 <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
     <li class="nav-item" role="presentation">
-        <button class="nav-link active" id="listaproducto-tab" data-bs-toggle="tab" data-bs-target="#listaproducto" type="button" role="tab" aria-controls="listaproducto" aria-selected="true">Lista de banners</button>
+        <button class="nav-link active" id="listaproducto-tab" onclick="LimpiarForm()" data-bs-toggle="tab" data-bs-target="#listaproducto" type="button" role="tab" aria-controls="listaproducto" aria-selected="true">Lista de banners</button>
     </li>
     <li class="nav-item" role="presentation">
         <button class="nav-link " id="editarproducto-tab" data-bs-toggle="tab" data-bs-target="#editarproducto" type="button" role="tab" aria-controls="editarproducto" aria-selected="false">Editar banner</button>
