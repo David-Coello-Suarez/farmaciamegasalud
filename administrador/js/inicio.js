@@ -434,7 +434,7 @@ function calcularOferta(elemento) {
     } else {
         $(elemento).parent().parent().parent().parent().find("input#oferta").val('0.00')
     }
-}LimpiarForm
+}
 
 
 // VALIDACION DE NUMERO

@@ -37,19 +37,19 @@
                                 <div class="row">
                                     <div class="col-12 mb-2">
                                         <div class="form-floating">
-                                            <input type="password" class="form-control form-control-sm" id="passActual" name="passActual" placeholder="Contraseña actual"> 
+                                            <input type="password" class="form-control form-control-sm" id="passActual" name="passActual" placeholder="Contraseña actual">
                                             <label for="passActual">Contraseña actual</label>
                                         </div>
                                     </div>
                                     <div class="col-12 mb-2">
                                         <div class="form-floating">
-                                            <input type="password" class="form-control form-control-sm" id="passNueva" name="passNueva" placeholder="Nueva contraseña"> 
+                                            <input type="password" class="form-control form-control-sm" id="passNueva" name="passNueva" placeholder="Nueva contraseña">
                                             <label for="passNueva">Nueva contraseña</label>
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-floating">
-                                            <input type="password" class="form-control form-control-sm" id="passConfirm" name="passConfirm" placeholder="Confirmar contraseña"> 
+                                            <input type="password" class="form-control form-control-sm" id="passConfirm" name="passConfirm" placeholder="Confirmar contraseña">
                                             <label for="passConfirm">Confirmar contraseña</label>
                                         </div>
                                     </div>
@@ -101,12 +101,16 @@
                                 <img src="img/ico.ico?v=<? echo rand() ?>" alt="mdo" width="32" height="32" class="rounded-circle">
                             </button>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenu2">
-                                <li><button class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#cambiarContrasena">Cambiar Contraseña</button></li>
+                                <li>
+                                    <button class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#cambiarContrasena">
+                                        Cambiar Contraseña
+                                    </button>
+                                </li>
+                                <li>
+                                    <a href="logout.php" role="button" class="btn btn-warning dropdown-item">Salir</a>
+                                </li>
                             </ul>
                         </div>
-                    </li>
-                    <li>
-                        <a href="logout.php" role="button" class="btn btn-warning">Salir</a>
                     </li>
                 </ul>
             </div>

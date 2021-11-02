@@ -36,10 +36,15 @@ class Login
         ");
 
         if ($usuario) {
-            $sesion = new Session();
-            $sesion->createSession($usuario);
 
-            return Funciones::RespuestaJson(1, "Usuario Loguedo");
+            if ($this->LogSession($usuario)) {
+                $sesion = new Session();
+                $sesion->createSession($usuario);
+
+                return Funciones::RespuestaJson(1, "Usuario Loguedo");
+            } else {
+                return Funciones::RespuestaJson(2, "Error a realizar el log");
+            }
         } else {
             return Funciones::RespuestaJson(2, "Usuario Incorrecto [ usuario - contraseña ]");
         }
@@ -54,7 +59,7 @@ class Login
 
         if ($usuario) {
             $passActual = hash("sha256", html_entity_decode($data['passActual']));
-            
+
             if ($usuario['contrasena'] == $passActual) {
                 $passNueva = hash("sha256", html_entity_decode($data['passNueva']));
 
@@ -77,5 +82,19 @@ class Login
 
 
         return Funciones::RespuestaJson(1, "", $_SESSION);
+    }
+
+    private function LogSession($usuario): bool
+    {
+        $idusuario = intval($usuario['id']);
+
+        $sqlLog = "INSERT INTO LogSession (idusuario) VALUE(?)";
+
+        $execLog = $this->conexion->DBConsulta($sqlLog, true, array($idusuario));
+
+        if ($execLog) {
+            return true;
+        }
+        return false;
     }
 }
