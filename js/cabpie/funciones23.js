@@ -450,7 +450,7 @@ $(function(){
         avatarRole: 'Soporte', // Rol del avatar
         zIndex: '99999',
     });
-});
+
 
 
 function ListarCategoriasCab() {

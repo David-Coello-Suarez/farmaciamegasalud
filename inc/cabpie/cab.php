@@ -147,6 +147,9 @@
                             <li>
                                 <a href="turnos">Nuestras Farmacias</a>
                             </li>
+                            <li>
+                                <a href="http://comprobantes.farmaciasmegasalud.com/">Facturaci&oacute;n electr&oacute;nica</a>
+                            </li>
 
                             <li class="contact-link"><a href="contactanos">Contactenos</a></li>
                             <!-- <li class="custom-link-right"><a href="#" target="_blank">Ofertas especiales</a></li> -->
