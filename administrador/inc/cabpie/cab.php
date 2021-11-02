@@ -22,6 +22,50 @@
 
 <body class="d-flex flex-column h-100">
 
+    <!-- Modal Contraseña-->
+    <div class="modal fade" id="cambiarContrasena" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog  modal-dialog-centered">
+            <div class="modal-content">
+                <form id="formContrasena">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Cambio de contraseña</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-12 mb-2">
+                                        <div class="form-floating">
+                                            <input type="password" class="form-control form-control-sm" id="passActual" name="passActual" placeholder="Contraseña actual"> 
+                                            <label for="passActual">Contraseña actual</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 mb-2">
+                                        <div class="form-floating">
+                                            <input type="password" class="form-control form-control-sm" id="passNueva" name="passNueva" placeholder="Nueva contraseña"> 
+                                            <label for="passNueva">Nueva contraseña</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-floating">
+                                            <input type="password" class="form-control form-control-sm" id="passConfirm" name="passConfirm" placeholder="Confirmar contraseña"> 
+                                            <label for="passConfirm">Confirmar contraseña</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary">Actualizar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <header class="p-3 bg-dark text-white">
         <div class="container">
             <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
@@ -33,7 +77,7 @@
                     <?
                     $itemMenu = "";
                     foreach ($menu as $key => $item) {
-                        if (file_exists("inc/".$item['ventana'])) {
+                        if (file_exists("inc/" . $item['ventana'])) {
                             $itemMenu .= "
                                 <li>
                                     <a href='" . $item['ventana'] . "' class='nav-link px-2 " . ($pagina == $item['ventana'] ? 'text-white' : 'text-secondary') . "'>
@@ -52,7 +96,14 @@
                 </div> -->
                 <ul class="text-end nav">
                     <li>
-                        <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle me-5">
+                        <div class="dropdown">
+                            <button class="btn btn-sm dropdown-toggle me-5 text-white" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="img/ico.ico?v=<? echo rand() ?>" alt="mdo" width="32" height="32" class="rounded-circle">
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenu2">
+                                <li><button class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#cambiarContrasena">Cambiar Contraseña</button></li>
+                            </ul>
+                        </div>
                     </li>
                     <li>
                         <a href="logout.php" role="button" class="btn btn-warning">Salir</a>

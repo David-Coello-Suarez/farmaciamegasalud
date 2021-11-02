@@ -47,6 +47,11 @@
                     </tr>
                 </thead>
                 <tbody class="tbodyCategoria">
+                    <tr>
+                        <td colspan="20" class="text-center p-3">
+                            <i class="fa fa-circle-o-notch fa-fw fa-spin"></i> Cargando datos
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </div>

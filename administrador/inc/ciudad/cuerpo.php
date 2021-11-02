@@ -26,7 +26,7 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="staticBackdropLabel">Agregar m&aacute;s ciudades</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"  onclick="LimpiarFormulario()"></button>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="LimpiarFormulario()"></button>
                                 </div>
                                 <div class="modal-body">
                                     <div class="row g-2 mt-0 Ciudades">
@@ -79,6 +79,11 @@
                     </tr>
                 </thead>
                 <tbody class="tbodyCiudades">
+                    <tr>
+                        <td colspan="20" class="text-center p-3">
+                            <i class="fa fa-circle-o-notch fa-fw fa-spin"></i> Cargando datos
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </div>

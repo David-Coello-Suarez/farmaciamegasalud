@@ -1,3 +1,85 @@
+$(document).ready(function () {
+
+    $("#formContrasena").submit(function () {
+        var actualizar = true
+
+        try {
+            $(this).find("input.form-control").map((i, item) => {
+                var input = $(item).val().trim()
+
+                if (input == "") {
+                    $(item).addClass("is-invalid")
+                    throw "Debe llenar todos los campos"
+                } else {
+                    $(item).addClass("is-valid").removeClass("is-invalid")
+
+                }
+            })
+
+            var passNueva = $(this).find("input#passNueva").val().trim(),
+                passconfirm = $(this).find("input#passConfirm").val().trim()
+
+            if (passNueva != passconfirm) {
+                $(this).find("input#passNueva, input#passConfirm").addClass("is-invalid")
+                throw 'Las nuevas contraseñas no coinciden'
+            }
+        } catch (e) {
+            actualizar = !actualizar
+            swalMixin(e, "warning")
+        }
+
+        if (actualizar) {
+            console.log("actualizado")
+
+            var formData = new FormData($(this)[0])
+            formData.append("metodo", "AC")
+
+            $.ajax({
+                type: 'POST',
+                url: 'util/ajax/login.php',
+                dataType: 'Json',
+                data: formData,
+                cache: false,
+                processData: false,
+                contentType: false,
+                error: function (err) { console.log(err) },
+                beforeSend: function () {
+                    $("button[type=submit]").html("Procesando....").prop({ disabled: true })
+                },
+                success: function (response) {
+                    var { estado, msj, data } = response
+
+                    switch (estado) {
+                        case 1:
+                            $("#cambiarContrasena").modal("hide")
+                            $("#formContrasena").trigger("reset")
+                            Swal.fire({
+                                icon: 'success',
+                                html: msj,
+                                showDenyButton: false,
+                                showCancelButton: false,
+                                confirmButtonText: 'Ok!',
+                            }).then((result) => {
+                                window.location = "logout.php"
+                            })
+                            break
+                        case 2:
+                            swalMixin(msj, "warning")
+                            $("button[type=submit]").html("Actualizar").prop({ disabled: false })
+                            break
+                    }
+
+                }
+            })
+
+        }
+
+        return false
+    })
+
+})
+
+
 function CargarImage(element, formatoAdmin = ['png', 'jpeg', 'jpg']) {
 
     var imagenGuardada = element.files[0];

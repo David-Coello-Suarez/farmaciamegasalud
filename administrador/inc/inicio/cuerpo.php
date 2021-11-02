@@ -65,7 +65,7 @@
                 <tbody class="tbodyProducto">
                     <tr>
                         <td colspan="20" class="text-center p-3">
-                            No hay productos
+                            <i class="fa fa-circle-o-notch fa-fw fa-spin"></i> Cargando datos
                         </td>
                     </tr>
                 </tbody>

@@ -17,7 +17,11 @@
             </div>
         </div>
 
-        <div class="row farmacias mt-2"></div>
+        <div class="row farmacias mt-2">
+            <div class="text-center p-3">
+                <i class="fa fa-circle-o-notch fa-fw fa-spin"></i> Cargando datos
+            </div>
+        </div>
 
         <div class="row">
             <div class="col-md-6 text-center text-md-start paginacion"></div>
@@ -64,13 +68,13 @@
                                 <div class="row g-2 mt-0">
                                     <div class="col">
                                         <div class="form-floating">
-                                            <input type="tel" class="form-control form-control-sm" id="telefono" placeholder="00001" name="telefono[]" onkeypress="return validarNumero(event);"/>
+                                            <input type="tel" class="form-control form-control-sm" id="telefono" placeholder="00001" name="telefono[]" onkeypress="return validarNumero(event);" />
                                             <label for="telefono">Telefono (*)</label>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-floating">
-                                            <input type="tel" class="form-control form-control-sm" id="extencion" placeholder="00001" name="extencion[]" onkeypress="return validarNumero(event);"/>
+                                            <input type="tel" class="form-control form-control-sm" id="extencion" placeholder="00001" name="extencion[]" onkeypress="return validarNumero(event);" />
                                             <label for="extencion">Extención (*)</label>
                                         </div>
                                     </div>

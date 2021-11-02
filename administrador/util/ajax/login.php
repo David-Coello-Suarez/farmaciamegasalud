@@ -8,9 +8,12 @@ $metodo = $_POST['metodo'];
 switch ($metodo) {
     case 'LG':
         $usuario = html_entity_decode($_POST['usuario']);
-        $contrasena = sha1(html_entity_decode($_POST['contrasena']));
+        $contrasena = hash( "sha256", html_entity_decode($_POST['contrasena']));
 
         $respuesta = $login->VerificarUsuario($usuario, $contrasena);
+        break;
+    case 'AC':
+        $respuesta = $login->ActualizarContrasena($_POST);
         break;
 
     default:
