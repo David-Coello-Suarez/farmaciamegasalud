@@ -73,7 +73,7 @@
 
                         </div>
                         <div class="card-footer">
-                            <button type="submit" class="btn btn-sm btn-success">Guardar</button>
+                            <button type="submit" class="btn btn-sm btn-success banner">Guardar</button>
                         </div>
                     </div>
                 </form>

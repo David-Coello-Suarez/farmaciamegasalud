@@ -29,7 +29,7 @@ $(document).ready(function () {
                 $("button[type=submit]").html("Procesando..!!").prop({ disabled: true })
             },
             success: function (response) {
-                
+
                 var { estado, msj, data } = response
 
                 switch (estado) {
@@ -120,17 +120,17 @@ $(document).ready(function () {
             dataType: 'json',
             data,
             success: function (response) {
-                
+
                 var { estado, msj, data } = response
 
                 switch (estado) {
                     case 1:
                         let { idbannerDet, imagen, tipoBanner } = data
-                        
+
                         $("#idbanner").val(Number(idbannerDet))
                         $("img#imgPre").attr({ src: `${imagen}?v=${new Date().getMilliseconds()}` })
                         $(`#selectedTipoBannerForm option[value=${tipoBanner}]`).prop({ selected: true })
-                        $("button[type=button]").html("Actualizar")
+                        $("button[type=button].banner").html("Actualizar")
 
                         $("button#editarproducto-tab").tab("show")
                         break
