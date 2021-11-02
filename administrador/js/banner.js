@@ -130,7 +130,7 @@ $(document).ready(function () {
                         $("#idbanner").val(Number(idbannerDet))
                         $("img#imgPre").attr({ src: `${imagen}?v=${new Date().getMilliseconds()}` })
                         $(`#selectedTipoBannerForm option[value=${tipoBanner}]`).prop({ selected: true })
-                        $("button[type=button].banner").html("Actualizar")
+                        $("button[type=button].bannerSubmit").html("Actualizar")
 
                         $("button#editarproducto-tab").tab("show")
                         break
