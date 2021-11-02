@@ -87,10 +87,33 @@ class Banners
 
     public function ActualizarBanner($data, $img): object
     {
-        return Funciones::RespuestaJson(1, "", $data);
+        $id = intval($data['idbanner']);
+        $tipo = intval($data['selectedTipoBannerForm']);
+
+        $imagen = "";
+        if ($img['type'] != "") {
+            $buscar = $this->conexion->DBConsulta("SELECT imagen FROM BannerDetalle WHERE idbannerDet = $id", false);
+
+            $borrar = Funciones::EliminarArchivo($buscar['imagen']);
+
+            if ($borrar && file_exists("../../" . $buscar['imagen'])) {
+                $imagen =  ", imagen = '" . Funciones::SubirImg('banner', $img['type'], $img['tmp_name'], $id) . "'";
+            } else {
+                $imagen =  ", imagen = '" . Funciones::SubirImg('banner', $img['type'], $img['tmp_name'], $id) . "'";
+            }
+        }
+
+        $sqlGuardar = "UPDATE BannerDetalle SET tipoBanner = ?, fechaActual = now() $imagen WHERE idbannerDet = ?";
+
+        if ($this->conexion->DBConsulta($sqlGuardar, true, array($tipo, $id))) {
+            return Funciones::RespuestaJson(1, "Éxito al actualizar");
+        }
+
+        return Funciones::RespuestaJson(2, "Error al actualizar");
     }
 
-    public function CambiarEstado($data){
+    public function CambiarEstado($data)
+    {
         $id = intval($data['id']);
         $estado = intval($data['estado']);
 
@@ -98,10 +121,23 @@ class Banners
 
         $execCambiarEstadO = $this->conexion->DBConsulta($sqlCambiarEstado, true, array($estado, $id));
 
-        if($execCambiarEstadO){
+        if ($execCambiarEstadO) {
             return Funciones::RespuestaJson(1, "Cambiado con éxito");
-        }else{
+        } else {
             return Funciones::RespuestaJson(2, "Error");
         }
+    }
+
+    public function BannerSeleccionado($data): object
+    {
+        $id = intval($data['id']);
+
+        $execBanner = $this->conexion->DBConsulta("SELECT * FROM BannerDetalle WHERE idbannerDet = $id");
+
+        if ($execBanner) {
+            return Funciones::RespuestaJson(1, "", $execBanner);
+        }
+
+        return Funciones::RespuestaJson(2, "Error al buscar");
     }
 }

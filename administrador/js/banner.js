@@ -29,7 +29,7 @@ $(document).ready(function () {
                 $("button[type=submit]").html("Procesando..!!").prop({ disabled: true })
             },
             success: function (response) {
-                console.log(response)
+                
                 var { estado, msj, data } = response
 
                 switch (estado) {
@@ -97,7 +97,7 @@ $(document).ready(function () {
                 switch (estado) {
                     case 1:
                         let items = parseInt($("#selectedItems :selected").val()),
-                        pagina = parseInt($(".paginacion").find('.page-item.active>.page-link').data("pagina"))
+                            pagina = parseInt($(".paginacion").find('.page-item.active>.page-link').data("pagina"))
 
                         swalMixin(msj)
                         cargarBanner(items, pagina)
@@ -105,6 +105,35 @@ $(document).ready(function () {
                     case 2:
                         swalMixin(msj)
                         break;
+                }
+            }
+        })
+    })
+
+    $(".banner").on("click", ".btn-editar", function () {
+        let data = $(this).data()
+        data.metodo = "OBS"
+
+        $.ajax({
+            url: 'util/ajax/banner.php',
+            type: 'POST',
+            dataType: 'json',
+            data,
+            success: function (response) {
+                
+                var { estado, msj, data } = response
+
+                switch (estado) {
+                    case 1:
+                        let { idbannerDet, imagen, tipoBanner } = data
+                        
+                        $("#idbanner").val(Number(idbannerDet))
+                        $("img#imgPre").attr({ src: `${imagen}?v=${new Date().getMilliseconds()}` })
+                        $(`#selectedTipoBannerForm option[value=${tipoBanner}]`).prop({ selected: true })
+                        $("button[type=button]").html("Actualizar")
+
+                        $("button#editarproducto-tab").tab("show")
+                        break
                 }
             }
         })
@@ -181,7 +210,7 @@ const cargarBanner = (items, pagina = 1) => {
                                         <label class="form-check-label" for="flexSwitchCheckChecked">${parseInt(item['estado']) == 1 ? 'Activo' : 'Inactivo'}</label>
                                     </div>
 
-                                    <button type='button' data-id=${parseInt(item['idbannerDet'])} class='btn btn-sm btn-success'>
+                                    <button type='button' data-id=${parseInt(item['idbannerDet'])} class='btn btn-sm btn-success btn-editar'>
                                         Editar
                                     </button>
 

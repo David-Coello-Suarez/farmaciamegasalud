@@ -30,6 +30,9 @@ if ($session->checkSession()) {
         case 'AEB':
             $respuesta = $banner->CambiarEstado($_POST);
             break;
+        case 'OBS':
+            $respuesta = $banner->BannerSeleccionado($_POST);
+            break;
 
         default:
             $respuesta = Funciones::RespuestaJson(2, "No exite metodo seleccionado. '$metodo'");
