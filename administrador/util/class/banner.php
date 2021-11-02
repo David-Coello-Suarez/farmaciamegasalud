@@ -96,7 +96,7 @@ class Banners
 
             $borrar = Funciones::EliminarArchivo($buscar['imagen']);
 
-            if ($borrar && file_exists("../../" . $buscar['imagen'])) {
+            if ($borrar) {
                 $imagen =  ", imagen = '" . Funciones::SubirImg('banner', $img['type'], $img['tmp_name'], $id) . "'";
             } else {
                 $imagen =  ", imagen = '" . Funciones::SubirImg('banner', $img['type'], $img['tmp_name'], $id) . "'";

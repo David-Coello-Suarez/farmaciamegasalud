@@ -80,9 +80,13 @@ class Funciones
 
     public static function EliminarArchivo($ruta = "")
     {
-        if ($ruta != "") {
-            if (unlink("../../$ruta")) {
-                return true;
+        if (file_exists("../../$ruta")) {
+            if ($ruta != "") {
+                if (unlink("../../$ruta")) {
+                    return true;
+                } else {
+                    return false;
+                }
             } else {
                 return false;
             }
