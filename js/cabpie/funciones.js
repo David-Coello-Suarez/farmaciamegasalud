@@ -7,7 +7,9 @@ $(document).ready(function () {
         return false;
     });
 
-
+    $(".seconds").on("click", "#banner_1", function () {
+        window.open("https://drive.google.com/file/d/1BBvrVbnxbeTxTMyXlEycRo-j7BGtvyj_/view?usp=sharing", '_blank').focus();
+    })
 
     /*---------------------------------------------------
    Scroll to top
@@ -387,16 +389,16 @@ const listarBannerSecundario = () => {
         },
         error: function (err) { console.log(err) },
         success: function (response) {
-            
+
             var { estado, data } = response
 
             switch (estado) {
                 case 1:
                     let { bannersS } = data, bannerdiv = "";
 
-                    bannersS.map((item) => {
+                    bannersS.map((item, i) => {
                         bannerdiv += `
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"> <a href="#"><img title="sample-banner1" alt="sample-banner1" src="administrador/${item['imagen']}?v=${new Date().getMilliseconds()}"></a></div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"> <a id="banner_${i}"><img alt="sample-banner1" src="administrador/${item['imagen']}?v=${new Date().getMilliseconds()}"></a></div>
                         `
                     })
 

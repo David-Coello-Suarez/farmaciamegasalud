@@ -58,6 +58,23 @@ a b,
 #header .header-row {
     padding: 20px 0;
 }
-#container{
+#container {
     margin-bottom: 0px;
+}
+.marketshop-banner div a {
+    font: normal normal normal 14px /1 FontAwesome;
+}
+
+.marketshop-banner div #banner_1 img:hover {
+    opacity: 0.5;
+}
+
+.marketshop-banner div #banner_1:hover::after {
+    content: "\f06e";
+    color: black;
+    position: absolute;
+    z-index: 999;
+    top: 50%;
+    right: 50%;
+    font-size: 2.5rem;
 }
