@@ -8,7 +8,7 @@
                 <div class="contact col-lg-3 col-md-3 col-sm-12 col-xs-12">
                     <h5>Detalles de contacto</h5>
                     <ul>
-                        <li class="address"><i class="fa fa-map-marker"></i>Guayas, Guayaquil, Ecuador</li>
+                        <li class="address"><i class="fa fa-map-marker"></i><? echo $parametro['direccionLocal'] ?></li>
                         <li class="mobile"><i class="fa fa-phone"></i><? echo $parametro['contacto'] ?></li>
                         <li class="email"><i class="fa fa-envelope"></i>Enviar correo electrónico a través de nuestra <a href="mailto:<? echo $parametro['correoInfo'] ?>">Contacta con nosotros</a>
                     </ul>
@@ -26,27 +26,8 @@
                     <h5>Servicio al cliente</h5>
                     <ul>
                         <li><a href="contactanos">Contáctenos</a></li>
-                        <!-- <li><a href="returns.html">Returns</a></li>
-                           <li><a href="sitemap.html">Site Map</a></li> -->
                     </ul>
                 </div>
-                <!-- <div class="column col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                       <h5>Extras</h5>
-                       <ul>
-                           <li><a href="manufacturer.html">Brands</a></li>
-                           <li><a href="gift-voucher.html">Gift Vouchers</a></li>
-                           <li><a href="#">Affiliates</a></li>
-                           <li><a href="#">Specials</a></li>
-                       </ul>
-                   </div> -->
-                <!-- <div class="column col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                    <h5>Boletin informativo</h5>
-                    <div class="form-group">
-                        <label class="control-label" for="subscribe">Regístrese para recibir las últimas noticias y actualizaciones.</label>
-                        <input id="signup" type="email" required="" placeholder="Email address" name="email" class="form-control">
-                    </div>
-                    <input type="submit" value="Subscribirse" class="btn btn-primary">
-                </div> -->
             </div>
         </div>
     </div>
@@ -54,23 +35,17 @@
         <div class="container">
             <div id="powered" class="clearfix">
                 <div class="powered_text pull-left flip">
-                    <p><a href="https://sotenet.net/" >CopyRigth © <? print_r(date("Y")); ?> Sotenet.net</a></p>
+                    <p><a href="https://www.instagram.com/rohi_os/?hl=es" >CopyRigth © <? print_r(date("Y")); ?> Rohi Os</a></p>
                 </div>
                 <div class="" style="width: 100%; text-align:center"> 
                     <a href="https://www.facebook.com/farmaciasMegaSalud/" target="_blank"> 
-                        <img data-toggle="tooltip" src="img/social/facebook.png?v=<? print_r($random) ?>" alt="Facebook" title="Facebook">
+                        <img data-toggle="tooltip" src="img/social/facebook.png?v=<? print_r($random) ?>" alt="Facebook" title="Facebook" width="40px">
                     </a> 
                     <a href="https://www.instagram.com/farmaciasmegasalud/?utm_medium=copy_link" target="_blank">
-                         <img data-toggle="tooltip"width="32px"  src="https://www.masdemascotitas.com/wp-content/uploads/2020/11/instagram-mas-de-mascotitas-mx.png?v=<? print_r($random) ?>" alt="Instagram" title="Instagram"> 
+                         <img data-toggle="tooltip"width="40px"  src="https://www.masdemascotitas.com/wp-content/uploads/2020/11/instagram-mas-de-mascotitas-mx.png?v=<? print_r($random) ?>" alt="Instagram" title="Instagram"> 
                     </a> 
                 </div>
             </div>
-            <!-- <div class="bottom-row">
-                    <div class="custom-text text-center"> <img alt="" src="image/logo-small.png">
-                        <p>This is a CMS block. You can insert any content (HTML, Text, Images) Here. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                    </div>
-                    <div class="payments_types"> <a href="#" target="_blank"> <img data-toggle="tooltip" src="image/payment/payment_paypal.png" alt="paypal" title="PayPal"></a> <a href="#" target="_blank"> <img data-toggle="tooltip" src="image/payment/payment_american.png" alt="american-express" title="American Express"></a> <a href="#" target="_blank"> <img data-toggle="tooltip" src="image/payment/payment_2checkout.png" alt="2checkout" title="2checkout"></a> <a href="#" target="_blank"> <img data-toggle="tooltip" src="image/payment/payment_maestro.png" alt="maestro" title="Maestro"></a> <a href="#" target="_blank"> <img data-toggle="tooltip" src="image/payment/payment_discover.png" alt="discover" title="Discover"></a> <a href="#" target="_blank"> <img data-toggle="tooltip" src="image/payment/payment_mastercard.png" alt="mastercard" title="MasterCard"></a> </div>
-                </div> -->
         </div>
     </div>
     <div id="WABoton"></div>
