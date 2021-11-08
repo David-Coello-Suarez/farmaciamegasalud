@@ -45,6 +45,9 @@ for ($i = 0; $i < count($arregloLib['libreria']); $i++) {
             echo '<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>';
             echo '<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/locale/es-us.min.js" integrity="sha512-QfUPyAMVgJBoL2yYVx8xkXmPFL7IKoF+eP5hq5xF4O/Mz1eqvxdy/vBEWDiJNPwGw7K8FCcCllrppqLpSWK/ng==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>';
             break;
+        case 'checkeditor':
+            echo '<script src="https://cdn.ckeditor.com/ckeditor5/31.0.0/classic/ckeditor.js"></script>';
+            break;
     }
 }
 ?>

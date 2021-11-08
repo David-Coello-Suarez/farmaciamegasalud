@@ -30,8 +30,26 @@ if ($session->checkSession()) {
     }
 
     // OBTENER EL MENU
-    $menu = $conexion->DBConsulta("SELECT nombre, ventana FROM Menu", false, array(1));
+    $menu = $conexion->DBConsulta("SELECT * FROM Menu WHERE idpadre = 0", false, array(1));
+    $vectorMenu = array();
+    $cont = 0;
+    foreach ($menu as $item) {
+        $vectorMenu[$cont]['id'] = $item['id'];
+        $vectorMenu[$cont]['nombre'] = $item['nombre'];
+        $vectorMenu[$cont]['ventana'] = $item['ventana'];
+        $vectorMenu[$cont]['es_menu'] = $item['es_menu'];
+        $vectorMenu[$cont]['idpadre'] = $item['idpadre'];
 
+        $submenu = $conexion->DBConsulta("SELECT * FROM Menu WHERE idpadre = " . intval($item['id']), false, array(1));
+
+        if (count($submenu) > 0) {
+            $vectorMenu[$cont]['submenu'] = $submenu;
+        } else {
+            $vectorMenu[$cont]['submenu'] =  array();
+        }
+        $cont++;
+    }
+    
     // OBTENER LIBRERIA POR VENTANA
     $librerias = $conexion->DBConsulta("SELECT nombre, ventana, libreria FROM Menu WHERE ventana = ?", false, array($pagina));
     $arregloLib =  array();

@@ -76,17 +76,42 @@
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                     <?
                     $itemMenu = "";
-                    foreach ($menu as $key => $item) {
-                        if (file_exists("inc/" . $item['ventana'])) {
+
+                    for ($i = 0; $i < count($vectorMenu); $i++) {
+                        if (intval($vectorMenu[$i]['es_menu']) == 1) {
+
+                            $href = "";
+                            $submenu = "";
+                            $class = "";
+                            $classInt = "";
+
+                            if (count($vectorMenu[$i]['submenu']) > 0) {
+
+                                $href = "href='javascript:;' id='navbarDropdown_" . $i . "' role='button' data-bs-toggle='dropdown' aria-expanded='false' ";
+                                $class = "dropdown";
+                                $classInt = "dropdown-toggle ";
+
+                                $submenu .= "<ul class='dropdown-menu' aria-labelledby='navbarDropdown_".$i."'>";
+                                for ($e = 0; $e < count($vectorMenu[$i]['submenu']); $e++) {
+                                    $submenu .= "
+                                    <li><a class='dropdown-item' href='".$vectorMenu[$i]['submenu'][$e]['ventana']."'>".$vectorMenu[$i]['submenu'][$e]['nombre']."</a></li>
+                                    ";
+                                }
+                                $submenu .= "</ul>";
+                            } else {
+                                $href = "href='" . $vectorMenu[$i]['ventana'] . "'";
+                            }
+
                             $itemMenu .= "
-                                <li>
-                                    <a href='" . $item['ventana'] . "' class='nav-link px-2 " . ($pagina == $item['ventana'] ? 'text-white' : 'text-secondary') . "'>
-                                        " . ucfirst($item['nombre']) . "
-                                    </a>
+                                <li class='nav-item $class'>
+                                    <a class='nav-link pe-1 ps-1 $classInt" . ($pagina == $vectorMenu[$i]['ventana'] ? 'nav-link text-white' : 'text-white-50') . "' $href>" . $vectorMenu[$i]['nombre'] . "</a>
+                                    $submenu
                                 </li>
                             ";
                         }
                     }
+
+
                     print_r($itemMenu);
                     ?>
                 </ul>
