@@ -20,31 +20,26 @@ class Farmacia
         $this->conexion->DBConexion();
     }
 
-    public function ListarFarmacias($items, $pagina)
+    public function ListarFarmacias($ciudad, $items, $pagina)
     {
-        $totalFarmacias = $this->conexion->DBConsulta("SELECT COUNT(*) AS total FROM Farmacia", false);
+        $setencia = "SELECT fm.* FROM Farmacia AS fm INNER JOIN FarmaciaCiudades as fmc ON fm.id = fmc.idFarmacia WHERE fmc.idCiudad = ?";
+        $totalFarmacias = $this->conexion->DBConsulta($setencia, false, array($ciudad));
 
-        $total = intval($totalFarmacias['total']);
-
-        if ($total > 0) {
+        if (count($totalFarmacias) > 0) {
             $inicia = intval(($pagina - 1) * $items);
 
-            $sqlItems = "SELECT * FROM Farmacia ORDER BY createdAt DESC LIMIT $inicia, $items";
+            $sqlItems = "$setencia ORDER BY fm.createdAt DESC LIMIT $inicia, $items";
 
-            $farmcias = $this->conexion->DBConsulta($sqlItems, false, array(1));
+            $farmcias = $this->conexion->DBConsulta($sqlItems, false, array($ciudad));
 
             $cont = intval($inicia + 1);
             $itemInt = array();
 
             foreach ($farmcias as $item) {
-                $idfarmacia = intval($item['id']);
-
-                $ciudad = $this->conexion->DBConsulta("SELECT c.ciudad FROM FarmaciaCiudades AS fc INNER JOIN Ciudades AS c ON fc.idCiudad = c.id WHERE fc.idFarmacia = $idfarmacia", false);
-                $item['ciudad'] = ucfirst(strtolower($ciudad['ciudad']));
+                $ciudad1 = $this->conexion->DBConsulta("SELECT * FROM Ciudades WHERE id = $ciudad", false);
+                $item['ciudad'] = ucfirst(strtolower($ciudad1['ciudad']));
 
                 $item['pos'] = $cont;
-
-                $item['id'] = $idfarmacia;
 
                 if ($item['updatedAt'] == null) {
                     $item['updatedAt'] = "";
@@ -59,8 +54,8 @@ class Farmacia
             }
 
             $data['farmacias'] = $itemInt;
-            $data['paginacion'] = Funciones::Paginacion($total, $items, $pagina);
-            $data['mostrar'] = Funciones::MostrandoInfo($cont, $inicia, $total, $items);
+            $data['paginacion'] = Funciones::Paginacion(count($totalFarmacias), $items, $pagina);
+            $data['mostrar'] = Funciones::MostrandoInfo($cont, $inicia, count($totalFarmacias), $items);
 
             return Funciones::RespuestaJson(1, "", $data);
         } else {
@@ -172,7 +167,7 @@ class Farmacia
 
             $direccion = htmlentities($data['direccion'][$i]);
             $referencia = htmlentities($data['referencia'][$i]);
-            $telefono = intval( str_replace(" ","", $data['telefono'][$i]));
+            $telefono = intval(str_replace(" ", "", $data['telefono'][$i]));
             $extencion = intval($data['extencion'][$i]);
             $googlemaps = htmlentities($data['googlemaps'][$i]);
             $idciudad = intval($data['ciudad'][$i]);

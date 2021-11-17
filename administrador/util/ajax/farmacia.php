@@ -15,8 +15,9 @@ if ($session->checkSession()) {
         case 'LTF':
             $items = intval($_POST['items']);
             $pagina = intval($_POST['pagina']);
+            $ciudad = intval($_POST['ciudad']);
 
-            $repuesta = $farmacia->ListarFarmacias($items, $pagina);
+            $repuesta = $farmacia->ListarFarmacias($ciudad, $items, $pagina);
             break;
         case 'AEF':
             $idfarmacia =  intval($_POST['id']);

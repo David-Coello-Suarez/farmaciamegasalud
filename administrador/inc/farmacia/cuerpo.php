@@ -15,6 +15,12 @@
                     <label for="selectedItems">Mostrar: </label>
                 </div>
             </div>
+            <div class="col-md-2">
+                <div class="form-floating">
+                    <select class="form-select form-select-sm" id="selectedCiudad"></select>
+                    <label for="selectedItems">Ciudad: </label>
+                </div>
+            </div>
         </div>
 
         <div class="row farmacias mt-2">

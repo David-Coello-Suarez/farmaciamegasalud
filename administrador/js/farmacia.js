@@ -1,10 +1,19 @@
 $(document).ready(function () {
-    ObtenerSelected(ObtenerFarmacias)
+    ObtenerSelected(CargarCiudades)
+    // CargarCiudades()
 
     // SELECCIONAR ITEMS
     $("#selectedItems").change(function () {
-        var items = parseInt($(this).val())
-        ObtenerFarmacias(items, 1)
+        var items = parseInt($(this).val()),
+            ciudad = parseInt($("#selectedCiudad :selected").val())
+        ObtenerFarmacias(ciudad, items, 1)
+    })
+
+    // SLECCIONAR CIUDAD
+    $("#selectedCiudad").change(function () {
+        var ciudad = parseInt($(this).val()),
+            items = parseInt($("#selectedItems :selected").val())
+        ObtenerFarmacias(ciudad, items, 1)
     })
 
     // CAMBIAR ESTADO
@@ -52,9 +61,10 @@ $(document).ready(function () {
 
     // CAMBIAR DE PAGINA
     $(".paginacion").on('click', 'a.page-link', function () {
-        var items = Number($("#selectedItems :selected").val())
+        var items = Number($("#selectedItems :selected").val()),
+            ciudad = parseInt($("#selectedCiudad :selected").val())
         var { pagina } = $(this).data()
-        ObtenerFarmacias(items, pagina)
+        ObtenerFarmacias(ciudad, items, pagina)
     })
 
     // AGREGAR NUEVA FARMACIA DOM
@@ -246,7 +256,7 @@ $(document).ready(function () {
 })
 
 // LISTAR FARMACIAS
-function ObtenerFarmacias(items = 10, pagina = 1) {
+function ObtenerFarmacias(ciudad, items = 10, pagina = 1) {
     $.ajax({
         url: 'util/ajax/farmacia.php',
         type: 'POST',
@@ -254,10 +264,21 @@ function ObtenerFarmacias(items = 10, pagina = 1) {
         data: {
             metodo: 'LTF',
             items,
-            pagina
+            pagina,
+            ciudad
         },
-        // error: function (err) { console.log(err) },
+        error: function (err) { console.log(err) },
+        beforeSend: function () {
+            $(".farmacias").html(`
+            <div class="text-center p-3">
+                <i class="fa fa-circle-o-notch fa-fw fa-spin"></i> Cargando datos
+            </div>`)
+
+            $(".paginacion, .mostrar").empty()
+        },
         success: function (response) {
+
+            console.log(response);
             var { estado, msj, data } = response
             switch (estado) {
                 case 1:
@@ -381,29 +402,36 @@ function validarNumero(evt) {
     }
 }
 
-// VALIDAR LONGITUD Y LATITUD
-function ValidarCoordinadas(evt, valor, longlat) {
-    var code = (evt.which) ? evt.which : evt.keyCode, pasar = false
+const CargarCiudades = (items) => {
+    let idciudad = 0
+    $.ajax({
+        url: 'util/ajax/ciudades.php',
+        type: 'POST',
+        dataType: 'Json',
+        data: {
+            metodo: 'LCA',
+        },
+        error: function (err) { console.log(err) },
+        success: function (response) {
+            var { estado, msj, data } = response
+            switch (estado) {
+                case 1:
+                    var { ciudades } = data, optionValue = ""
+                    ciudades.shift()
 
-    if ((code >= 48 && code <= 57) || code == 45 || code == 43 || code == 46 || code == 44) { // is a number.
-        pasar = true;
-    }
+                    ciudades.map((item, i) => {
 
-    console.log(valor)
+                        if (i == 0) { idciudad = item['id'] }
 
-    if (pasar) {
+                        optionValue += `<option value='${item['id']}'>${item['ciudad']}</option>`
+                    })
 
-        var regexpLong = new RegExp('^-?([1-8]?[1-9]|[1-9]0)\\.{1}\\d{1,6}')
-
-        if (regexpLong.test(valor)) {
-            console.log("Segundo")
-            $(evt.target).removeClass("is-invalid")
-            return true
-        } else {
-            $(evt.target).addClass("is-invalid")
-            return false
+                    $("#selectedCiudad").html(optionValue)
+                    break;
+            }
+        },
+        complete: function () {
+            ObtenerFarmacias(idciudad, items)
         }
-    } else {
-        return false
-    }
+    })
 }
