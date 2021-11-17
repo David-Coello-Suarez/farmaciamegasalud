@@ -277,8 +277,7 @@ function ObtenerFarmacias(ciudad, items = 10, pagina = 1) {
             $(".paginacion, .mostrar").empty()
         },
         success: function (response) {
-
-            console.log(response);
+            
             var { estado, msj, data } = response
             switch (estado) {
                 case 1:
@@ -317,6 +316,20 @@ function ObtenerFarmacias(ciudad, items = 10, pagina = 1) {
                     $(".farmacias").html(farmacia)
                     $(".mostrar").html(data.mostrar)
                     $(".paginacion").html(data.paginacion)
+                    break
+                case 2:
+                    let existe = `
+                        <div class="col-md-6">
+                            <div class="row shadow-lg g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                                <div class="col p-4 d-flex flex-column position-static">
+                                    <p>
+                                        No existe farmacias para esa ciudad
+                                    </p>                                
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    $(".farmacias").html(existe)
                     break
             }
         },
