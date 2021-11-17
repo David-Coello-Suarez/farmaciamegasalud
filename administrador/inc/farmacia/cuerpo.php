@@ -1,6 +1,6 @@
 <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
     <li class="nav-item" role="presentation">
-        <button class="nav-link active" id="listafarmacia-tab" data-bs-toggle="tab" data-bs-target="#listafarmacia" type="button" role="tab" aria-controls="listafarmacia" aria-selected="true">Lista de Farmacias</button>
+        <button class="nav-link active" onclick="LimparFormulario()" id="listafarmacia-tab" data-bs-toggle="tab" data-bs-target="#listafarmacia" type="button" role="tab" aria-controls="listafarmacia" aria-selected="true">Lista de Farmacias</button>
     </li>
     <li class="nav-item" role="presentation">
         <button class="nav-link" id="editarfarmacia-tab" data-bs-toggle="tab" data-bs-target="#editarfarmacia" type="button" role="tab" aria-controls="editarfarmacia" aria-selected="false">Editar Farmacia</button>
