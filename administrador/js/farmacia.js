@@ -235,6 +235,7 @@ $(document).ready(function () {
                     $("#guardar").html(`<i class="fa fa-save me-2"></i> Procesando..!!`).prop({ disabled: true })
                 },
                 success: function (response) {
+                    
                     var { estado, msj, data } = response
                     switch (estado) {
                         case 1:
@@ -245,6 +246,24 @@ $(document).ready(function () {
                             })
                             itemPaginaActual()
                             LimparFormulario()
+                            break
+                        case 2:
+                            Swal.fire({
+                                icon: 'info',
+                                html: msj,
+                                confirmButtonText: 'Cerrar'
+                            })
+                            $("#guardar").html("Guardar").prop({ disabled: false })
+                            let { repetidos } = data
+                            repetidos.map(function (itemInt) {
+                                $(".farmaciasInt").find(".farmacia").each(function (index, item) {
+                                    var textarea = ($(item).find("textarea#direccion").val());
+
+                                    if (itemInt['direccion'] == textarea) { } else {
+                                        $(item).remove()
+                                    }
+                                })
+                            })
                             break
                     }
                 }
@@ -277,7 +296,7 @@ function ObtenerFarmacias(ciudad, items = 10, pagina = 1) {
             $(".paginacion, .mostrar").empty()
         },
         success: function (response) {
-            
+
             var { estado, msj, data } = response
             switch (estado) {
                 case 1:
@@ -373,8 +392,9 @@ function ListarCiudades() {
 // OBTENER ITEM Y PAGINA ACTUAL
 function itemPaginaActual() {
     var pagina = $(".paginacion").find("li.active > a").data("pagina")
-    var items = Number($("#selectedItems :selected").val())
-    ObtenerFarmacias(items, pagina)
+    var items = Number($("#selectedItems :selected").val()),
+        ciudad = parseInt($("#selectedCiudad :selected").val())
+    ObtenerFarmacias(ciudad, items, pagina)
 }
 
 // LIMPIAR FORMULARIO

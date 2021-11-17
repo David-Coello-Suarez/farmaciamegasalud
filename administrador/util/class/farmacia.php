@@ -162,31 +162,40 @@ class Farmacia
         $total = 0;
 
         $totalInt = count($data['direccion']);
+        $farmaciasRepetidas = array();
 
         for ($i = 0; $i < $totalInt; $i++) {
 
             $direccion = htmlentities($data['direccion'][$i]);
-            $referencia = htmlentities($data['referencia'][$i]);
-            $telefono = intval(str_replace(" ", "", $data['telefono'][$i]));
-            $extencion = intval($data['extencion'][$i]);
-            $googlemaps = htmlentities($data['googlemaps'][$i]);
-            $idciudad = intval($data['ciudad'][$i]);
 
-            $dataInt = array($direccion, $telefono, $extencion, $referencia, $googlemaps);
+            $existeFarmacia = $this->conexion->DBConsulta("SELECT * FROM Farmacia WHERE direccion = '$direccion' ");
 
-            $crearNuevaFarmacia = $this->conexion->DBConsulta($sql, true, $dataInt);
-            if ($crearNuevaFarmacia) {
-                $idfarmacia = $this->conexion->UltimoInsert();
+            if ($existeFarmacia) {
+                $farmaciasRepetidas[] = $existeFarmacia;
+            } else {
 
-                $nombreImg = Funciones::SubirImg("farmacias", $img['type'][$i], $img['tmp_name'][$i], $idfarmacia);
+                $referencia = htmlentities($data['referencia'][$i]);
+                $telefono = intval(str_replace(" ", "", $data['telefono'][$i]));
+                $extencion = intval($data['extencion'][$i]);
+                $googlemaps = htmlentities($data['googlemaps'][$i]);
+                $idciudad = intval($data['ciudad'][$i]);
 
-                $updateImg = $this->conexion->DBConsulta("UPDATE Farmacia SET imagen = ? WHERE id = ?", true, array($nombreImg, $idfarmacia));
+                $dataInt = array($direccion, $telefono, $extencion, $referencia, $googlemaps);
 
-                if ($updateImg) {
-                    $guardarLocation = $this->conexion->DBConsulta("INSERT INTO FarmaciaCiudades (idFarmacia, idCiudad) VALUES  (?,?)", true, array($idfarmacia, $idciudad));
+                $crearNuevaFarmacia = $this->conexion->DBConsulta($sql, true, $dataInt);
+                if ($crearNuevaFarmacia) {
+                    $idfarmacia = $this->conexion->UltimoInsert();
 
-                    if ($guardarLocation) {
-                        $total++;
+                    $nombreImg = Funciones::SubirImg("farmacias", $img['type'][$i], $img['tmp_name'][$i], $idfarmacia);
+
+                    $updateImg = $this->conexion->DBConsulta("UPDATE Farmacia SET imagen = ? WHERE id = ?", true, array($nombreImg, $idfarmacia));
+
+                    if ($updateImg) {
+                        $guardarLocation = $this->conexion->DBConsulta("INSERT INTO FarmaciaCiudades (idFarmacia, idCiudad) VALUES  (?,?)", true, array($idfarmacia, $idciudad));
+
+                        if ($guardarLocation) {
+                            $total++;
+                        }
                     }
                 }
             }
@@ -194,6 +203,9 @@ class Farmacia
 
         if ($totalInt == $total) {
             return Funciones::RespuestaJson(1);
+        } else if (count($farmaciasRepetidas) > 0) {
+            $dataA['repetidos'] = $farmaciasRepetidas;
+            return Funciones::RespuestaJson(2, "La siguiente farmacias ya existen", $dataA);
         } else {
             return Funciones::RespuestaJson(2, "Error al guardar");
         }
