@@ -2,5 +2,5 @@
 *.jpeg
 *.png
 
-.htaccess
+.htacc*
 config.php
