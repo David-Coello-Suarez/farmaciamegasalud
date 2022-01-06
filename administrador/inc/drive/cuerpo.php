@@ -17,7 +17,7 @@
                                 <img class="img-fluid" id="imgDrive">
                                 <hr>
                                 <label for="img" class="btn btn-outline-success w-100">Selecciona la imagen</label>
-                                <input type="file" name="img" id="img" class="d-none" accept="image/png,imge/jpeg,image/jpg">
+                                <input type="file" name="img" id="img" class="d-none" accept="image/png,image/jpeg,image/jpg">
                             </div>
                             <div class="col-6">
                                 <div class="row">

@@ -35,9 +35,9 @@ function ListarProductos() {
                             tarjetas += `
                                 <div class="owl-item" >
                                     <div class="product-thumb clearfix">
-                                        <div class="image"><a href="productos?id=${parseInt(item['id'])}"><img src="administrador/${item['imagen']}?v=${new Date().getMilliseconds()}" alt="jhonson-aceite" title="jhonson-aceite" class="img-responsive"></a></div>
+                                        <div class="image"><a href="javascript:;"><img src="administrador/${item['imagen']}?v=${new Date().getMilliseconds()}" alt="jhonson-aceite" title="jhonson-aceite" class="img-responsive"></a></div>
                                         <div class="caption">
-                                            <h4><a href="productos?id=${parseInt(item['id'])}"">${item['nombre']}</a></h4>
+                                            <h4><a href="javascript:;">${item['nombre']}</a></h4>
                                             <p class="price">
                                                 <span class="price-new">$ ${item['precioUnitPromo'] || '00.00'}</span>
                                                 <span class="price-old">$ ${(item['precionormal'])}</span>
