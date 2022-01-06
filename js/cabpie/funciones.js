@@ -406,5 +406,42 @@ const listarBannerSecundario = () => {
                     break
             }
         },
+        complete: function () {
+            ListarPDF()
+        }
+    })
+}
+
+const ListarPDF = () => {
+    $.ajax({
+        url: 'util/ajax/drive.php',
+        type: 'POST',
+        dataType: 'json',
+        data: {
+            metodo: 'LPDF'
+        },
+        error: function (err) { console.log(err) },
+        success: function (response) {
+
+            let { estado, data } = response
+
+            switch (estado) {
+                case 1:
+                    let { pdf } = data, opcionVista = "";
+
+                    pdf.map((item) => {
+                        opcionVista += `
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <a href="${item['url'] == "" ? 'javascript:;' : item['url']}" id="banner_0"  ${item['url'] == "" ? '' : 'target="_blank"'}>
+                                    <img alt="sample-banner1" src="administrador/${item['imagen']}?v=${new Date().getMilliseconds()}">
+                                </a>
+                            </div>
+                        `
+                    })
+
+                    $("#detallePDF").html(opcionVista)
+                    break;
+            }
+        }
     })
 }

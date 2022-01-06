@@ -17,6 +17,10 @@ if ($session->checkSession()) {
         case 'OI':
             $respuesta = $drive->ObtenerLink($_POST);
             break;
+        case 'GC':
+            // $respuesta = Funciones::RespuestaJson(1, "", array("Data: " => $_POST, "Img" => $_FILES));
+            $respuesta = $drive->GuardarCambias($_POST, $_FILES['img']);
+            break;
 
         default:
             $respuesta = Funciones::RespuestaJson(3, "No exite metodo seleccionado. '$metodo'");

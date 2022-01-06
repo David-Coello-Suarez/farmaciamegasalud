@@ -13,8 +13,11 @@
                 <div class="modal-body">
                     <div class="">
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-6 text-center">
                                 <img class="img-fluid" id="imgDrive">
+                                <hr>
+                                <label for="img" class="btn btn-outline-success w-100">Selecciona la imagen</label>
+                                <input type="file" name="img" id="img" class="d-none" accept="image/png,imge/jpeg,image/jpg">
                             </div>
                             <div class="col-6">
                                 <div class="row">
@@ -26,7 +29,7 @@
                                     </div>
                                     <div class="col-12">
                                         <div class="form-floating mb-3">
-                                            <textarea name="url" id="url" class="form-control form-control-sm" rows="60" required placeholder="Dirección de archivo"></textarea>
+                                            <textarea name="url" id="url" class="form-control form-control-sm h-auto" rows="6" required placeholder="Dirección de archivo"></textarea>
                                             <label for="url">Url de archivo (*)</label>
                                         </div>
                                     </div>
@@ -42,8 +45,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-sm btn-success" data-bs-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-sm btn-primary">Guardar cambios</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary cerrar" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-sm btn-success guardar">Guardar cambios</button>
                 </div>
             </div>
         </form>

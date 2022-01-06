@@ -14,7 +14,7 @@
             </div>
             <div class="col-sm-4 pull-right flip">
                 <div class="marketshop-banner">
-                    <div class="row seconds">
+                    <div class="row seconds" id="detallePDF">
                         <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"> <a href="#"><img title="sample-banner1" alt="sample-banner1" src="image/banner/sp-small-banner-360x185.jpg"></a></div> -->
                         <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"> <a href="#"><img style="height: 170px" title="sample-banner1" alt="sample-banner1" src="img/ofertas/oferta-1.jpg?v=<? print_r($random) ?>"></a></div>
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"> <a href="#"><img title="sample-banner1" alt="sample-banner1" src="img/ofertas/oferta-2.jpg?v=<? print_r($random) ?>"></a></div> -->

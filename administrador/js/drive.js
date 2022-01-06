@@ -1,7 +1,7 @@
 $(document).ready(function () {
     CargarImgDrive()
 
-    $("#formBanner").on('change', 'input[type=file]', function () {
+    $("#formDrive").on('change', 'input[type=file]', function () {
         CargarImage(this)
     })
 
@@ -17,13 +17,19 @@ $(document).ready(function () {
             error: function (err) {
                 console.log(err)
             },
+            beforeSend: function () {
+                $(".btneditar").prop({ disabled: true }).html(`
+                <i class="fa fa-circle-o-notch fa-fw fa-spin"></i> 
+            `)
+            },
             success: function (response) {
 
                 var { estado, msj, data } = response
                 switch (estado) {
                     case 1:
                         let { drive } = data
-                        console.log(drive)
+
+                        $("#exampleModalLabel").html("Actualizar")
 
                         $("#imgDrive").attr({ src: `${drive.imagen}?v=${new Date().getMilliseconds()}` })
                         $("#iddrive").val(parseInt(drive.id))
@@ -34,8 +40,53 @@ $(document).ready(function () {
                         $("#exampleModal").modal("show")
                         break;
                 }
+            },
+            complete: function () {
+                $(".btneditar").prop({ disabled: false }).html(`Editar`)
             }
         })
+    })
+
+    $("#formDrive").submit(function () {
+        const formData = new FormData(this)
+        formData.append("metodo", "GC")
+
+
+        $.ajax({
+            url: 'util/ajax/drive.php',
+            type: 'POST',
+            dataType: 'json',
+            data: formData,
+            cache: false,
+            processData: false,
+            contentType: false,
+            error: function (err) {
+                console.log(err)
+            },
+            beforeSend: function () {
+                $("button.cerrar, button.guardar").prop({ disabled: true })
+                $("button.guardar").html(`
+                    <i class="fa fa-circle-o-notch fa-fw fa-spin"></i> 
+                `)
+            },
+            success: function (response) {
+                var { estado, msj, data } = response
+
+                switch (estado) {
+                    case 1:
+                        $("#exampleModal").modal("hide")
+                        CargarImgDrive()
+                        break;
+                }
+            },
+            complete: function () {
+                $("button.cerrar, button.guardar").prop({ disabled: false })
+                $("button.guardar").html(`Guardar cambios`)
+            }
+        })
+
+
+        return false
     })
 })
 

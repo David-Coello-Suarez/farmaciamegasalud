@@ -45,4 +45,34 @@ class drive
 
         return Funciones::RespuestaJson(2, "Error al buscar");
     }
+
+    public function GuardarCambias($data, $img)
+    {
+        $id = intval($data['iddrive']);
+        $orden = intval($data['orden']);
+        $nombre = htmlentities($data['nombre']);
+        $ubicacion = htmlentities($data['url']);
+
+        $dataInt = array($nombre, $ubicacion);
+
+        $imgData = "";
+
+        if ($img['type'] != "") {
+            $nombreImg = Funciones::SubirImg("drive", $img['type'], $img['tmp_name'], $id);
+            $imgData = ", imagen = ?";
+            array_push($dataInt, $nombreImg);
+        }
+
+        array_push($dataInt, $id);
+
+        $sqlDrive = "UPDATE DriveImg SET nombre = ?, url = ? $imgData WHERE id = ?";
+
+        $exec = $this->conexion->DBConsulta($sqlDrive, true, $dataInt);
+
+        if ($exec) {
+            return Funciones::RespuestaJson(1, "Éxito");
+        } else {
+            return Funciones::RespuestaJson(2, "Error al actualizar");
+        }
+    }
 }

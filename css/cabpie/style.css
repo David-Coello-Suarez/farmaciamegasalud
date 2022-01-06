@@ -83,4 +83,12 @@ a b,
     #menu {
         height: 4rem;
     }
+
+    .menu::before {
+        content: "\f039";
+        margin-left: 20px;
+        position: relative;
+        top: 10px;
+        font-family: "FontAwesome";
+    }
 }

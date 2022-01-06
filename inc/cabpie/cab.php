@@ -22,13 +22,13 @@
         echo "<link rel='stylesheet' href='css/$pagina.css?v=$random ?>' />";
     }
     ?>
-<!-- Enlazar CSS Floating WhatsApp -->
-<link rel="stylesheet" href="https://rawcdn.githack.com/jerfeson/floating-whatsapp/0310b4cd88e9e55dc637d1466670da26b645ae49/floating-wpp.min.css">
+    <!-- Enlazar CSS Floating WhatsApp -->
+    <link rel="stylesheet" href="https://rawcdn.githack.com/jerfeson/floating-whatsapp/0310b4cd88e9e55dc637d1466670da26b645ae49/floating-wpp.min.css">
     <title><? echo $parametro['nombreweb'] ?></title>
 </head>
 
 <body>
-<input type="hidden" value="<? echo $parametro['contactoWS']; ?>" id="contactWS" />
+    <input type="hidden" value="<? echo $parametro['contactoWS']; ?>" id="contactWS" />
     <div class="wrapper-wide">
         <div id="header">
             <!-- Top Bar Start-->
@@ -133,8 +133,8 @@
             <!-- Header End-->
             <!-- Main Menu Start-->
             <nav id="menu" class="navbar">
-                <div class="container">
-                    <div class="navbar-header"> <span class="visible-xs visible-sm"> Menu <b></b></span></div>
+                <div class="container" style="height: 100%;">
+                    <div class="navbar-header" style="height: 100%;"> <span class="visible-xs visible-sm  menu" style="height: 100%;"> <b style="position: relative; top: 10px;">Menu </b></span></div>
                     <div class="collapse navbar-collapse navbar-ex1-collapse">
                         <ul class="nav navbar-nav">
                             <li><a class="home_link" title="Home" href="inicio"><span>Home</span></a></li>
