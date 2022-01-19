@@ -38,9 +38,9 @@ class Producto
                 FROM ProductosCategorias AS pc
                 INNER JOIN Productos AS p
                 ON pc.idproducto = p.id
-                WHERE pc.idcategoria = ? LIMIT 10";
+                WHERE pc.idcategoria = ? AND p.estado = ? LIMIT 10";
 
-                $productos = $this->conexion->DBConsulta($sqlInt, false, array($idcategoria));
+                $productos = $this->conexion->DBConsulta($sqlInt, false, array($idcategoria, 1));
 
                 if (count($productos) > 0) {
                     foreach ($productos as $itemInt) {
