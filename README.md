@@ -1,1 +1,1 @@
-# Farmacias Mega Salud
+# Farmacias Mega Salud s.a.
