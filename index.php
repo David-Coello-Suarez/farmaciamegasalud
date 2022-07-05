@@ -25,8 +25,6 @@ $consulta = $conexion->DBConsulta("SELECT * FROM Categorias");
 
 $random = rand();
 
-#No quitar random
-
 include "inc/cabpie/cab.php";
 include "inc/$pagina.php";
 include "inc/cabpie/pie.php";
