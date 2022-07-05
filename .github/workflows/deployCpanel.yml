@@ -1,5 +1,3 @@
-# This is a basic workflow to help you get started with Actions
-
 name: Deploy Web site
 
 # Controls when the workflow will run
@@ -16,13 +14,13 @@ jobs:
     # The type of runner that the job will run on
     name: FTP-Deploy-Action
     runs-on: ubuntu-latest
-    run: echo Hello, world!
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@main
       - name: created worflow
+        run: echo Hello, world!
         with:
           ftp-server: ${{ secrets.FTP_SERVER }}
           ftp-username:  ${{ secrets.FTP_USER }}
