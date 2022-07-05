@@ -9,7 +9,7 @@ if (file_exists("config.php")) {
 $conexion = new Conexion();
 $conexion->DBConexion();
 
-// OBTENER PARAMETROS
+// OBTENER PARAMETROS 2
 $sql = $conexion->DBConsulta("SELECT * FROM Parametros", false, array(1));
 $parametro = array();
 foreach ($sql as $fila) {
