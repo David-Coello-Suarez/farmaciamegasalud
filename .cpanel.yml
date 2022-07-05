@@ -2,4 +2,4 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home2/megasalud/public_html 
-    git clone https://github.com/David-Coello-Suarez/farmaciamegasalud.git
+    - git clone https://github.com/David-Coello-Suarez/farmaciamegasalud.git
