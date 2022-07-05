@@ -21,6 +21,10 @@ jobs:
       - name: created worflow
         uses: actions/checkout@v3
         with:
+          fetch-depth: 2
+      - name: FTP-Deploy-Action
+        uses: Automattic/FTP-Deploy-Action@3.0.1
+        with:
           ftp-server: ${{ secrets.FTP_SERVER }}
           ftp-username:  ${{ secrets.FTP_USER }}
           ftp-password:  ${{ secrets.FTP_PASSWORD }}
